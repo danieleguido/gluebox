@@ -10,3 +10,5 @@
 *.log
 *.db
 *~
+settings.py
+manage.py
