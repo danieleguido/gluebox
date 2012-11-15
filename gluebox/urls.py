@@ -5,7 +5,7 @@ from django.conf.urls import patterns, include, url
 # admin.autodiscover()
 
 urlpatterns = patterns('',
-	url(r'^$', 'gluebox.glue.api.home', name='gluebox_home'),
+	url(r'^$', 'glue.views.index', name='gluebox_home'),
 	url(r'^glue/$',  include('glue.urls')),
     # Examples:
     # url(r'^$', 'gluebox.views.home', name='home'),
