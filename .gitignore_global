@@ -1,0 +1,12 @@
+#
+# compiled source
+# ===============
+#
+*.pyc
+*.zip
+*.docx
+*.pdf
+*.rar
+*.log
+*.db
+*~
