@@ -1,0 +1,11 @@
+*.sql
+*.pyc
+*.zip
+*.docx
+*.pdf
+*.rar
+*.log
+*.db
+*~
+settings.py
+manage.py
