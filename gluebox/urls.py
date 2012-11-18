@@ -6,7 +6,7 @@ from django.conf.urls import patterns, include, url
 
 urlpatterns = patterns('',
 	url(r'^$', 'glue.views.index', name='gluebox_home'),
-	url(r'^glue/$',  include('glue.urls')),
+	url(r'^glue/', include('glue.urls')),
     # Examples:
     # url(r'^$', 'gluebox.views.home', name='home'),
     # url(r'^gluebox/', include('gluebox.foo.urls')),
