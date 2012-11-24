@@ -33,7 +33,7 @@ class Pin( models.Model ):
 	class Meta:
 		unique_together = ( "slug", "language" )
 
-	def json( self ):
+	def json( self, recursive=True ):
 		return{
 			'id': self.id,
 			'slug':self.slug,
@@ -41,7 +41,8 @@ class Pin( models.Model ):
 			'abstract': self.abstract,
 			'content': self.content,
 			'language': self.language,
-			'mimetype': self.mimetype
+			'mimetype': self.mimetype,
+			'related': [ p.json( recursive=False) for p in self.related.all() ] if recursive else self.related.count()
 		}
 
 
