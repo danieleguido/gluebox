@@ -2,7 +2,7 @@
 
 var oo = oo || {};
 oo.vars = oo.vars || {};
-
+oo.urls = oo.urls || {};
 
 /*
 
@@ -35,27 +35,25 @@ oo.api = {
 };
 
 oo.api.init = function(){
-
+	oo.vars.csrftoken = oo.fn.get_cookie('csrftoken');
 	$.ajaxSetup({
 		crossDomain: false, // obviates need for sameOrigin test
 		beforeSend: function(xhr, settings) { if (!(/^(GET|HEAD|OPTIONS|TRACE)$/.test(settings.type))){ xhr.setRequestHeader("X-CSRFToken", oo.vars.csrftoken);}}
-	});
+	});oo.log("[oo.api.init]");
 }
 
-oo.api.process = function(result, callback, namespace ){
+oo.api.process = function( result, callback, namespace ){
 	if( result.status == 'ok'){
 		if (typeof callback == "object"){
 			oo.toast( callback.message, callback.title );
 		} else return callback( result );
 	} else if( typeof result.error == "object" ){
-		oo.magic.invalidate( result.error, namespace );
-		ds.m.toast(  ds.i18n.translate("invalid form") , ds.i18n.translate("error"), {stayTime:3000, cleanup: true});
+		oo.invalidate( result.error, namespace );
+		oo.toast(  oo.i18n.translate("invalid form") , oo.i18n.translate("error"), {stayTime:3000, cleanup: true});
 	} else {
-		ds.m.handlers.fault( result.error )
+		oo.toast( result.error , oo.i18n.translate("error"), {stayTime:3000, cleanup: true});
 	}
-		
 }
-
 
 oo.api.urlfactory = function( url, factor, pattern ){
 	if( typeof factor == "undefined" ){ ds.log("[ds.m.api.urlfactory] warning'"); return url; };
@@ -71,8 +69,8 @@ oo.api.urlfactory = function( url, factor, pattern ){
 
 */
 oo.modals = {}
-oo.modals.init = function(){
-	$(".modal").each( function( i, el ){ var $el = $(el); $(el).css("margin-top",- Math.round( $(el).height() / 2 )); });
+oo.modals.init = function(){ 
+	$(".modal").each( function( i, el ){ var $el = $(el); $(el).css("margin-top",- Math.round( $(el).height() / 2 )); }); oo.log("[oo.modals.init]");
 };
 
 
@@ -84,11 +82,8 @@ oo.modals.init = function(){
 
 */
 oo.tooltip = {}
-oo.tooltip.init = function(){ $('body').tooltip({
-	selector:'[rel=tooltip]',
-	animation: false,
-	placement: function( tooltip, caller ){ var placement = $(caller).attr('data-tooltip-placement'); return typeof placement != "undefined"? placement: 'top'; } 	// string|function	'top'	how to position the tooltip - top | bottom | left | right
-});};
+oo.tooltip.init = function(){
+	$('body').tooltip({ selector:'[rel=tooltip]', animation: false, placement: function( tooltip, caller ){ var placement = $(caller).attr('data-tooltip-placement'); return typeof placement != "undefined"? placement: 'top'; } }); oo.log("[oo.tooltip.init]");};
 
 
 /*
@@ -110,7 +105,7 @@ oo.toast = function( message, title, options ){
     =================
 
 */
-oo.invalidate = function( errors, namespace ){ if (!namespace){ namespace = "id";} ds.log("[oo.invalidate] namespace:",namespace, " errors:",errors );
+oo.invalidate = function( errors, namespace ){ if (!namespace){ namespace = "id";} oo.log("[oo.invalidate] namespace:",namespace, " errors:",errors );
 	for (var i in errors){
 		if( i.indexOf("_date") != -1  ){
 			$("#"+namespace+"_"+i+"_day").parent().addClass("invalid");	
@@ -131,6 +126,7 @@ oo.fault = function( message ){
 	message = typeof message == "undefined"? "": message;
 	oo.toast( message, oo.i18n.translate("connection error"), {stayTime:3000, cleanup: true});
 }
+
 
 /*
 

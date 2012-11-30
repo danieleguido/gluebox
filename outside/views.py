@@ -4,27 +4,51 @@ from django.template import RequestContext
 from django.conf import settings
 from django.utils.translation import ugettext as _
 from django.contrib.auth import login, logout, authenticate
-from glue.forms import LoginForm, AddPageForm, AddPinForm
+from glue.forms import LoginForm, AddPageForm, AddPinForm, EditPinForm
 
 
-from glue.models import Pin
+from glue.models import Pin, Page
 
 #
-#
-#    Outside Portfolio application
-#    =============================
+#    Outside
+#    =======
 #
 def index( request ):
 	data = shared_context( request, tags=[ "index" ] )
-
+	
+	if Page.objects.filter( slug="project", language=data['language'] ).count() > 0:
+		return page( request, "project")
+	
+	
 	# load all pins without page, without Enquete
 	data['pins'] = Pin.objects.filter(language=data['language'])
 
 	return render_to_response('outside/index.html', RequestContext(request, data ) )
 
 def page( request, page_slug ):
-	data = shared_context( request, tags=[ "index" ] )
-	return render_to_response('outside/index.html', RequestContext(request, data ) )
+	data = shared_context( request, tags=[ page_slug ] )
+	data['page'] = get_object_or_404(Page, slug=page_slug, language=data['language'] )
+	data['pins'] = Pin.objects.filter( page__slug=page_slug, language=data['language'], parent=None)
+
+	return render_to_response('outside/page.html', RequestContext(request, data ) )
+
+def enquete( request, enquete_id ):
+	data = shared_context( request, tags=[ "enquetes" ] )
+	data['enquete'] = get_object_or_404( Enquete, id=enquete_id )
+
+	return render_to_response('outside/enquete.html', RequestContext(request, data ) )
+
+def enquiry( request, enquete_id ):
+	data = shared_context( request, tags=[ "enquetes" ] )
+	data['enquiry'] = get_object_or_404( Enquiry, enquete__id=enquete_id, language=data['language'])
+
+	return render_to_response('outside/enquiry.html', RequestContext(request, data ) )
+
+def enquetes( request ):
+	data = shared_context( request, tags=[ "enquetes" ] )
+	data['enquetes'] = Enquete.objects.all() 
+
+	return render_to_response('outside/enquetes.html', RequestContext(request, data ) )
 
 
 def login_view( request ):
@@ -58,6 +82,12 @@ def logout_view( request ):
 	logout( request )
 	return redirect( 'outside_index' )
 
+def studies( request ):
+	data = shared_context( request, tags=[ "studies" ] )
+	#data['studies'] = Enquete.objects.all().order_by('-id')
+	#data['page'] = Bean.objects.get( slug='studies', type='PAGE', language=data['language'] )
+	return render_to_response('outside/studies.html', RequestContext(request, data ) )
+
 def shared_context( request, tags=[], previous_context={} ):
 	# startup
 	d = previous_context
@@ -74,12 +104,12 @@ def shared_context( request, tags=[], previous_context={} ):
 	load_language( request, d )
 	
 
-	# d['sections'] = [ b for b in Bean.objects.filter( type='PAGE', language=d['language'] ).order_by('sort') ] # menu up. type PAGE should be translated via django trans tamplate tags.
+	d['pages'] = [ p for p in Page.objects.filter( language=d['language'] ).order_by('id') ] # menu up. type PAGE should be translated via django trans tamplate tags.
 	
 	return d
 
 def load_edit_mode( request, d ):
-	d['has_edit_mode'] = request.user.groups.filter(name="CONTENT EDITOR").count() != 0
+	d['has_edit_mode'] = request.user.groups.filter(name="EDITORS").count() != 0
 	# check permission
 	if not d['has_edit_mode']:
 		d['edit_mode'] = False;
@@ -96,8 +126,10 @@ def load_edit_mode( request, d ):
 
 	# add editable field
 	if d['edit_mode']:
-		d['add_page_form'] = AddPageForm()
-		d['add_pin_form'] = AddPinForm()
+		d['add_page_form'] = AddPageForm( auto_id="id_add_page_%s" )
+		d['add_pin_form'] = AddPinForm( auto_id="id_add_pin_%s" )
+		d['edit_pin_form'] = EditPinForm( auto_id="id_edit_pin_%s" )
+		
 		#d['pageaddform'] = PageAddForm(auto_id="id_page_%s")
 
 #

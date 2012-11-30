@@ -14,6 +14,7 @@ API_DEFAULT_OFFSET = 0
 API_DEFAULT_LIMIT = 50
 API_AVAILABLE_METHODS = [ 'DELETE', 'POST', 'GET' ]
 API_EXCEPTION				=	'GenericException'
+API_EXCEPTION_INTEGRITY		=	'IntegrityError'
 API_EXCEPTION_DOESNOTEXIST	=	'DoesNotExist'
 API_EXCEPTION_DUPLICATED	=	'Duplicated'
 API_EXCEPTION_FORMERRORS	=	'FormErrors'
@@ -69,7 +70,7 @@ class Epoxy:
 
 	"""
 	def __init__(self, request, method='GUESS' ):
-		self.request = request.REQUEST
+		self.request = request
 		self.response = { 'status':'ok' } # a ditionary of things
 		self.filters = {}
 		self.method = method
@@ -78,7 +79,7 @@ class Epoxy:
 		self.order_by = []
 		self.process()
 
-	def warning( key, message ):
+	def warning( self, key, message ):
 		if 'warnings' not in self.response['meta']:
 			self.response['meta']['warnings'] = {}
 		self.response['meta']['warnings'][ key ] = message
@@ -86,33 +87,37 @@ class Epoxy:
 	def process( self ):
 		self.response['meta'] = {}
 		self.response['meta']['action'] = whosdaddy(3)
-
+		self.response['meta']['user'] = self.request.user.username
 		# understand method via REQUEST params only if desired.
 		if self.method == 'GUESS':
-			if 'method' in self.request:
-				method = self.request.get('method') 
+
+			if 'method' in self.request.REQUEST: # simulation
+				method = self.request.REQUEST.get('method') 
 				if method not in API_AVAILABLE_METHODS:
-					self.warnings( 'order_by', "Method: %s is not available " % self.request.get('method') )
+					self.warnings( 'order_by', "Method: %s is not available " % self.request.REQUEST.get('method') )
 				else:
 					self.response['meta']['method'] = method
 					self.method = method
+			else:
+				self.method = self.response['meta']['method'] = self.request.method
+			
 
-		if self.method == 'GET' and 'filters' in self.request:
+		if self.method == 'GET' and 'filters' in self.request.REQUEST:
 			try:
-				self.filters = json.loads( self.request.get('filters') )
+				self.filters = json.loads( self.request.REQUEST.get('filters') )
 			except Exception, e:
 				self.warnings( 'filters', "Exception: %s" % e )
 
 		# order by
-		if self.method == 'GET' and 'order_by' in self.request:
+		if self.method == 'GET' and 'order_by' in self.request.REQUEST:
 			try:
-				self.order_by = j['meta']['order_by'] = json.loads( self.request.get('order_by') ) # json array
+				self.order_by = j['meta']['order_by'] = json.loads( self.request.REQUEST.get('order_by') ) # json array
 			except Exception, e:
 				self.warnings( 'order_by', "Exception: %s" % e )
 
 		# limit / offset 
-		if self.method=='GET' and ( 'offset' in self.request or 'limit' in self.request ) :
-			form = OffsetLimitForm( self.request )
+		if self.method=='GET' and ( 'offset' in self.request.REQUEST or 'limit' in self.request.REQUEST ) :
+			form = OffsetLimitForm( self.request.REQUEST )
 			if form.is_valid():
 				self.offset = form.cleaned_data['offset'] if form.cleaned_data['offset'] else self.offset 
 				self.limit	= form.cleaned_data['limit'] if form.cleaned_data['limit'] else self.limit 
@@ -177,12 +182,13 @@ class Epoxy:
 		return self
 
 	def json( self, mimetype="application/json" ):
-		if self.request is not None and self.request.has_key('indent'):
+		if self.request is not None and self.request.REQUEST.has_key('indent'):
 			return HttpResponse( json.dumps( self.response, indent=4),  mimetype=mimetype)
 		return HttpResponse( json.dumps( self.response ), mimetype=mimetype)
 
-	def response( self ):
-		return self.response
+	def add( self, key, value, jsonify=False):
+		self.response[ key ] = value.json() if jsonify else value
+		return value
 
 	def throw_error( self, error="", code=API_EXCEPTION ):
 		self.response[ 'status' ] = 'error'

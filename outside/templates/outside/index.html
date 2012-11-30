@@ -3,6 +3,10 @@
 {% block page %}
 	<!-- static url: {{ STATIC_URL }} -->
 	
+	<section class="alpha">
+		<h2>Outside the gluebox.</h2>
+		{{ user.username }}
+	</section>
 	{% for p in pins %}
 
 		<a id="{{ p.slug }}"></a>

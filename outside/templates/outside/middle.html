@@ -5,28 +5,27 @@
 	
 	<header>
 		<div id="header-inner" class="container_12">
-			<div id="logo"></div>
 			<ul>
 				
-	{% if not request.user.is_authenticated %}
+	{% if not user.is_authenticated %}
 				<li style="float:right">
-					<a href="#login" data-toggle="modal" data-target="#login-modal"> - {% trans "login" %} - </a>
+					<a href="#login" data-toggle="modal" data-target="#login-modal">{% trans "login" %}</a>
 				</li>
 	{% else %}
 				<li style="float:right">
-					<a href="{% url outside_logout %}"rel="tooltip" title="{% trans "logout" %} {{ request.user.username }}" data-tooltip-placement="bottom"> - {% trans "logout" %} - </a>
+					<a href="{% url outside_logout %}"rel="tooltip" title="{% trans "logout" %} {{ user.username }}" data-tooltip-placement="bottom">{% trans "logout" %}</a>
 				</li>
 		{% if has_edit_mode %}
 			{% if edit_mode %}
 				<li style="float:right" class="selected">
-					<a style="width: 48px;" href="{{  request.path }}?disable-edit-mode"> - {% trans "disable edit mode"%} -
+					<a  href="{{  request.path }}?disable-edit-mode">{% trans "disable edit"%}
 						<!-- div  style="position:relative; top:0px" title="{% trans "disable edit mode"%}" rel="tooltip" data-tooltip-placement="bottom" class="edit-mode on"></div>
 						&nbsp; -->
 					</a>
 				</li>
 			{% else %}
 				<li style="float:right">
-					<a href="{{  request.path }}?enable-edit-mode" title="{% trans "enable edit mode"%}" rel="tooltip" data-tooltip-placement="bottom">- {% trans "edit"%} -
+					<a href="{{  request.path }}?enable-edit-mode" title="{% trans "enable edit mode"%}" rel="tooltip" data-tooltip-placement="bottom">{% trans "edit"%}
 						<!-- div class="edit-mode off" title="{% trans "enable edit mode"%}" rel="tooltip" data-tooltip-placement="bottom"></div -->
 					</a>
 				</li>
@@ -41,7 +40,7 @@
 				</li>
 				
 				{% if has_edit_mode and edit_mode %}
-				<li>
+				<li  rel="tooltip" title="{% trans "add page"%}" data-tooltip-placement="bottom">
 					<a href="#"  data-toggle="modal" data-target="#add-page-modal">+</a>
 				</li>
 				{% endif %}
@@ -53,10 +52,7 @@
 				</li>
 				{% endfor %}
 
-				<!-- specific COMMON pages e.g. studies -->
-				<li{% if p.slug in tags %} class="selected"{% endif %}>
-					<a href="{% url outside_enquetes %}">{% trans "enquetes" %}</a>
-				</li>
+				
 				
 
 			</ul>
@@ -70,7 +66,8 @@
 		<div class="page" >
 			
 			<sidebar class="navbar">
-				
+				<a href="{% url outside_index %}"><div id="logo"></div></a>
+			
 				<h1>{% block page_title %}{% endblock %}</h1>
 				
 				<!-- logo dime-shs -->
@@ -78,10 +75,14 @@
 
 				{% endblock %}	
 
+				{% block sidebar_add_section %}
+					{% if edit_mode %}
+					
+				<div class="edit-mode add-pin" data-page-slug="{{ page.slug }}" style="text-align:center" rel="tooltip" title="{% trans "edit mode" %}: {% trans "add section" %}">[ {% trans "add section" %} ]
+				</div>
 
-			{% if edit_mode %}
-				<div class="edit-mode" style="text-align:center"><a href="#add-section-modal" rel="tooltip" data-toggle="modal" title="{% trans "edit mode" %}: {% trans "add section" %}">[ {% trans "add section" %} ]</a></div>
-			{% endif %}
+					{% endif %}
+				{% endblock %}	
 
 				<div id="collapse-menu" rel="tooltip" title="{% trans "collapse menu"%}"></div>
 				<div id="expand-menu" style="display:none" rel="tooltip" title="{% trans "expand menu"%}"></div>
@@ -136,7 +137,7 @@
 
 	<!-- add page! -->
 	<div class="modal fade hide" id="add-page-modal" style="display:none">
-		<form action="{% url outside_login %}" method="POST">{% csrf_token %}
+		<form method="POST">{% csrf_token %}
 
 		<div class="modal-header">
 		<!-- button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button -->
@@ -150,28 +151,74 @@
 		</div>
 		<div class="modal-footer">
 		<input type="button" data-dismiss="modal" class="bad" value="{% trans "cancel" %}" />
-		<input type="submit" href="#" value="{% trans "add page" %}"/>
+		<input type="submit" href="#" id="add-page" value="{% trans "add page" %}"/>
 		</div>
 	</div>
 
-	<!-- the add section modal -->
-	<div class="modal fade hide" id="add-section-modal" style="display:none">
-		<form action="{% url outside_login %}" method="POST">{% csrf_token %}
+	<!-- the add section/pin modal -->
+	<div class="modal fade hide" id="add-pin-modal" style="display:none">
+		<form action="" method="POST">{% csrf_token %}
 
 		<div class="modal-header">
-		<h3>{% trans "add section" %}{% if page %}in page "{{ page.title }}"{% endif %} </h3>
+			<h3>{% if page %} {% trans "add section into" %} &rarr; {{ page.title }} {% else %} {% trans "add section"%} {% endif %} <span id="parent-pin-slug" data-parent-pin="0"></span></h3>
 		</div>
 		<div class="modal-body">
+			{% trans "add section rules" %}
 			<input type="hidden" value="{{  request.get_full_path }}" name="next"/>
 			{{ add_pin_form.as_p }}
 		</div>
 		<div class="modal-footer">
 		<input type="button" data-dismiss="modal" class="bad" value="{% trans "cancel" %}" />
-		<input type="submit" href="#" value="{% trans "add section" %}"/>
+		<input type="submit" href="#" id="add-pin" value="{% trans "add section" %}"/>
 		
 		</div>
+	</form>
 	</div>
 
+	<!-- the edit section modal -->
+	<div class="modal fade hide" id="edit-pin-modal" style="display:none; width:640px; height:540px; overflow:hidden;margin-left: -320px">
+		<form action="" method="POST">{% csrf_token %}
+
+		<div class="modal-header">
+			<h3>{% trans "edit section" %}</h3>
+		</div>
+		<div class="modal-body" style="max-height:400px; overflow:hidden">
+			{{ edit_pin_form.title }}
+			<p>
+				{{ edit_pin_form.abstract.label_tag }}
+				<textarea id="id_edit_pin_abstract" rows="15" style="height:36px" cols="40" name="abstract"></textarea>
+			</p>
+
+			<input type="hidden" value="{{  request.get_full_path }}" name="next"/>
+			<div id="wysihtml5-toolbar" style="display: none;">
+			<a data-wysihtml5-command="bold">bold</a>
+			<a data-wysihtml5-command="italic">italic</a>
+
+			<!-- Some wysihtml5 commands require extra parameters -->
+			<a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="red">red</a>
+			<a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="green">green</a>
+			<a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="blue">blue</a>
+
+			<!-- Some wysihtml5 commands like 'createLink' require extra paramaters specified by the user (eg. href) -->
+			<a data-wysihtml5-command="createLink">insert link</a>
+			<div data-wysihtml5-dialog="createLink" style="display: none;">
+			<label>
+			Link:
+			<input data-wysihtml5-dialog-field="href" value="http://" class="text">
+			</label>
+			<a data-wysihtml5-dialog-action="save">OK</a> <a data-wysihtml5-dialog-action="cancel">Cancel</a>
+			</div>
+			</div>
+
+			<textarea id="id_edit_pin_content" style="height:306px" cols="40" name="content"></textarea>
+		</div>
+		<div class="modal-footer">
+		<input type="button" data-dismiss="modal" class="bad" value="{% trans "cancel" %}" />
+		<input type="submit" href="#" id="edit-pin" data-pin-id="0" value="{% trans "edit section" %}"/>
+		
+		</div>
+	</form>
+	</div>
 
 	<!-- the edit section modal -->
 
@@ -180,8 +227,12 @@
 {% endblock %}
 
 {% block api_urls %}
-	ds.vars.urls = {
 	
+	oo.urls = {
+		add_page:"{% url glue_api_pages %}",
+		add_pin:"{% url glue_api_pins %}",
+		edit_pin:"{% url glue_api_pin 0 %}",
+		get_pin:"{% url glue_api_pin 0 %}"
 	};
 
 {% endblock %}
