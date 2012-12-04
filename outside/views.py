@@ -21,7 +21,7 @@ def index( request ):
 	
 	
 	# load all pins without page, without Enquete
-	data['pins'] = Pin.objects.filter(language=data['language'])
+	data['pins'] = Pin.objects.filter(language=data['language'], status='published')
 
 	return render_to_response('outside/index.html', RequestContext(request, data ) )
 
@@ -92,6 +92,7 @@ def shared_context( request, tags=[], previous_context={} ):
 	# startup
 	d = previous_context
 	d['tags'] = tags
+	d['stylesheet'] = 'style.white'
 
 	# if it is not auth, pull loginform
 	if request.user.is_authenticated():

@@ -2,42 +2,13 @@
 {% load i18n %}
 
 {% block body %}
-	
+	<div class="wrapper container_12">
 	<header>
 		<div id="header-inner" class="container_12">
 			<ul>
 				
-	{% if not user.is_authenticated %}
-				<li style="float:right">
-					<a href="#login" data-toggle="modal" data-target="#login-modal">{% trans "login" %}</a>
-				</li>
-	{% else %}
-				<li style="float:right">
-					<a href="{% url outside_logout %}"rel="tooltip" title="{% trans "logout" %} {{ user.username }}" data-tooltip-placement="bottom">{% trans "logout" %}</a>
-				</li>
-		{% if has_edit_mode %}
-			{% if edit_mode %}
-				<li style="float:right" class="selected">
-					<a  href="{{  request.path }}?disable-edit-mode">{% trans "disable edit"%}
-						<!-- div  style="position:relative; top:0px" title="{% trans "disable edit mode"%}" rel="tooltip" data-tooltip-placement="bottom" class="edit-mode on"></div>
-						&nbsp; -->
-					</a>
-				</li>
-			{% else %}
-				<li style="float:right">
-					<a href="{{  request.path }}?enable-edit-mode" title="{% trans "enable edit mode"%}" rel="tooltip" data-tooltip-placement="bottom">{% trans "edit"%}
-						<!-- div class="edit-mode off" title="{% trans "enable edit mode"%}" rel="tooltip" data-tooltip-placement="bottom"></div -->
-					</a>
-				</li>
-			{% endif %}
-		{% endif %}
-	{% endif %}
-				<li style="float:right" {% ifequal language "EN" %} class="selected"{% endifequal %}>
-					<a href="{{  request.path }}?lang=en">- {% trans "EN" %} -</a>
-				</li>
-				<li style="float:right" {% ifequal language "FR" %} class="selected"{% endifequal %}>
-					<a href="{{  request.path }}?lang=fr">- {% trans "FR" %} -</a>
-				</li>
+	
+				
 				
 				{% if has_edit_mode and edit_mode %}
 				<li  rel="tooltip" title="{% trans "add page"%}" data-tooltip-placement="bottom">
@@ -45,6 +16,9 @@
 				</li>
 				{% endif %}
 
+				<li{% if "index" in tags %} class="selected"{% endif %}>
+					<a href="{% url outside_index %}">outside</a>
+				</li>
 				<!-- list of page according to desired language -->
 				{% for p in pages %}
 				<li{% if p.slug in tags %} class="selected"{% endif %}>
@@ -59,7 +33,7 @@
 		</div>
 	</header>
 
-	<div class="wrapper container_12">
+	
 		
 		
 
@@ -104,7 +78,40 @@
 	<footer>
 		{% block footer %}
 		<div id="footer-inner" class="container_12">
-			<div id="sciencespo-dimeshs-logo"></div>
+			<ul>
+				<li style="float:right" {% ifequal language "EN" %} class="selected"{% endifequal %}>
+					<a href="{{  request.path }}?lang=en">{% trans "english" %}</a>
+				</li>
+				<li style="float:right" {% ifequal language "FR" %} class="selected"{% endifequal %}>
+					<a href="{{  request.path }}?lang=fr">{% trans "french" %}</a>
+				</li>
+				{% if not user.is_authenticated %}
+				<li>
+					<a href="#login" data-toggle="modal" data-target="#login-modal">{% trans "login" %}</a>
+				</li>
+	{% else %}
+				<li>
+					<a href="{% url outside_logout %}"rel="tooltip" title="{% trans "logout" %} {{ user.username }}" data-tooltip-placement="top">{% trans "logout" %}</a>
+				</li>
+		{% if has_edit_mode %}
+			{% if edit_mode %}
+				<li style="float:right" class="selected">
+					<a  href="{{  request.path }}?disable-edit-mode">{% trans "disable edit"%}
+						<!-- div  style="position:relative; top:0px" title="{% trans "disable edit mode"%}" rel="tooltip" data-tooltip-placement="bottom" class="edit-mode on"></div>
+						&nbsp; -->
+					</a>
+				</li>
+			{% else %}
+				<li style="float:right">
+					<a href="{{  request.path }}?enable-edit-mode" title="{% trans "enable edit mode"%}" rel="tooltip" data-tooltip-placement="top">{% trans "edit"%}
+						<!-- div class="edit-mode off" title="{% trans "enable edit mode"%}" rel="tooltip" data-tooltip-placement="bottom"></div -->
+					</a>
+				</li>
+			{% endif %}
+		{% endif %}
+	{% endif %}
+	
+			</ul>
 			<div class="clear"></div>
 		</div>
 		
