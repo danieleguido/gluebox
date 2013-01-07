@@ -7,7 +7,7 @@
 *.log
 *.db
 *~
-gluebox.wsgi
+*.wsgi
 settings.py
 
 .DS_Store
