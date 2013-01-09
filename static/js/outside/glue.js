@@ -16,7 +16,7 @@ oo.magic.page = oo.magic.page || {};
 
 oo.magic.page.add = function( result ){
 	oo.log("[oo.magic.page.add]", result);
-	// window.location.reload();
+	window.location.reload();
 }
 
 oo.magic.pin = oo.magic.pin || {};
@@ -71,6 +71,29 @@ oo.api.pin.edit = function( pk, params, callback ){
 		}
 	}));
 };
+
+oo.api.pin.delete = function( pk, params, callback ){
+	$.ajax( $.extend( oo.api.settings.post,{
+		url: oo.api.urlfactory( oo.urls.edit_pin, pk ),
+		data: $.extend({'method':'DELETE'}, params),
+		success:function(result){
+			oo.log( "[oo.api.pin.delete] deleted : "+ pk);
+			oo.api.process( result, typeof callback == "function"? callback: oo.magic.reload);
+		}
+	}));
+};
+
+oo.api.pin.publish = function( pk, params, callback ){
+	$.ajax( $.extend( oo.api.settings.post,{
+		url: oo.api.urlfactory( oo.urls.publish_pin, pk ),
+		data:  params,
+		success:function(result){
+			//oo.log( "[oo.api.pin.publish] pin #"+ pk+"new status is : "+params.new_status);
+			oo.api.process( result, typeof callback == "function"? callback: oo.magic.reload);
+		}
+	}));
+};
+
 
 oo.api.page = {};
 oo.api.page.add = function( params ){
@@ -174,4 +197,80 @@ oo.glue.init = function(){ oo.log("[oo.glue.init]");
 		});
 		oo.log("eeee");
 	});
+	
+	// Delete PIN
+	$(document).on("click",".delete-pin", function(event){
+		oo.api.pin.delete($(this).attr('data-pin-id'),{});
+	});
+	
+	//Publish PIN
+	$(document).on("click",".publish-pin", function(event){
+		oo.api.pin.publish($(this).attr('data-pin-id'),{'new_status':$(this).attr('new-status')});
+	});
+	
 };
+
+
+oo.glue.upload = { is_dragging:false }
+oo.glue.upload.enable = function()
+{
+	oo.log("[oo.glue.upload.enable]");
+	$('#fileupload').fileupload('enable');
+}
+
+oo.glue.upload.disable = function(){
+	oo.log("[oo.glue.upload.disable]");
+	$('#fileupload').fileupload('disable');
+}
+oo.glue.upload.init = function(){
+	oo.log("[oo.glue.init]");
+
+	$('#fileupload').fileupload({
+		url: oo.urls.pin_upload,
+		dataType: 'json',
+		sequentialUploads: true,
+		dragover: function(e,data){
+			if (oo.glue.upload.is_dragging)
+				return;
+			oo.log("[oo.glue.upload] dragover");
+			oo.glue.upload.is_dragging = true;
+		},
+		drop:function(e,data){
+			oo.log("[oo.glue.upload] drop");
+			oo.glue.upload.is_dragging = false;
+		},
+		done: function (e, data) {
+			oo.log( e, data.result);
+			oo.toast("uploaded finished", { stayTime: 2000,cleanup:true });
+			if( data.result.status == "ok"){
+				oo.toast( "COMPLETED GUY!:!!!" );
+			} else{
+				oo.toast( data.result.error, ds.i18n.translate("error"), { stayTime: 2000, cleanup:true });	
+			}
+		},
+		start: function (e, data) {
+			oo.toast(oo.i18n.translate("start uploading"), { stayTime: 2000 });
+		},
+		fail: function( e, data){
+			oo.log(e, data);
+			oo.fault( e.type);
+		},
+		progressall: function (e, data) {
+			var progress = parseInt(data.loaded / data.total * 100, 10);
+			$('#progress .bar').width( progress + '%');
+		},
+
+    	add: function (e, data) {
+			var slug = $('body').attr('data-page-slug');
+			if( slug.length > 0 ){
+				data.formData = { 'page_slug':slug };
+			}
+			data.submit();
+			
+		}
+	});
+	// enabled by default, or comment
+	// oo.glue.upload.disable();
+};
+
+

@@ -21,7 +21,7 @@ def index( request ):
 	
 	
 	# load all pins without page, without Enquete
-	data['pins'] = Pin.objects.filter(language=data['language'], status='published')
+	data['pins'] = Pin.objects.filter(language=data['language'] ).order_by("-id")
 
 	return render_to_response('outside/index.html', RequestContext(request, data ) )
 
@@ -92,7 +92,7 @@ def shared_context( request, tags=[], previous_context={} ):
 	# startup
 	d = previous_context
 	d['tags'] = tags
-	d['stylesheet'] = 'style.white'
+	d['stylesheet'] = "bequali-blog"
 
 	# if it is not auth, pull loginform
 	if request.user.is_authenticated():
@@ -110,7 +110,7 @@ def shared_context( request, tags=[], previous_context={} ):
 	return d
 
 def load_edit_mode( request, d ):
-	d['has_edit_mode'] = request.user.groups.filter(name="EDITORS").count() != 0
+	d['has_edit_mode'] = request.user.groups.filter(name="CONTENT EDITOR").count() != 0
 	# check permission
 	if not d['has_edit_mode']:
 		d['edit_mode'] = False;

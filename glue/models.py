@@ -37,6 +37,7 @@ class Pin( models.Model ):
     status  = models.CharField( max_length=2, default="D",choices=PIN_STATUS_CHOICES)
 
     geos = models.ManyToManyField( Geo, blank=True, null=True ) # add geographic point
+    users = models.ManyToManyField( User, blank=True, null=True )
 
     class Meta:
     	unique_together = ( "slug", "language" )
@@ -56,6 +57,8 @@ class Pin( models.Model ):
     		'mimetype': self.mimetype
     	}
 
+
+
 class PageAbstract( models.Model ):
 	slug = models.SlugField()
 	title = models.CharField( max_length=160, default="", blank=True, null=True )
@@ -67,7 +70,6 @@ class PageAbstract( models.Model ):
 	class Meta:
 		unique_together = ( "slug", "language" )
 		abstract = True
-
 
 	def __unicode__(self):
 		return "%s (%s) a.k.a. %s" % (self.slug, self.language, self.title)
@@ -83,5 +85,4 @@ class PageAbstract( models.Model ):
 
 class Page( PageAbstract ):
 	pins = models.ManyToManyField( Pin, null=True, blank=True, related_name="page")
-
 

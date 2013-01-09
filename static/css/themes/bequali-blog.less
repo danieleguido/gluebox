@@ -1,6 +1,5 @@
-@import "mixins.less";
-@import "fonts.less";
-// @import "enquete.less";
+@import "../mixins.less";
+@import "../fonts.less";
 
 //
 //    ==============
@@ -16,7 +15,8 @@
 @footer-height: 80px;
 @footer-bottom: 12px;
 
-@page-color: lighten( #f1f1f1, 3% );
+@page-color: #f4f4f4;
+@header-color: #f4f4f4;
 @text-color: #383838;
 @spring-width: 24px;
 @spring-height: 24px;
@@ -30,16 +30,16 @@
 //    ---- mixins ----
 //    ================
 //
-.spring( @col:0, @row:0, @width:@spring-width, @height:@spring-height, @padding:@spring-padding){
-	width: @width;
-	height: @height;
-	background: url("../img/spring.png");
+.spring( @col:0, @row:0, @width:1, @height:1, @padding:@spring-padding){
+	width: @width * @spring-width;
+	height: @height * @spring-height;
+	background: url("../../img/spring.png");
 	background-repeat:no-repeat;
-	.spring-position( @col, @row, @width,  @height, @padding );
+	.spring-position( @col, @row, @width,  @height );
 }
 
-.spring-position( @col:0, @row:0, @width:@spring-width, @height:@spring-height, @padding:0 ){
-	background-position: -( @col * ( @width + @padding ) + @padding ) -( @row * ( @height + @padding ) + @padding );
+.spring-position( @col:0, @row:0, @width:1,  @height:1 ){
+	background-position: -( @col * @spring-width ) -( @row * @spring-height );
 }
 
 
@@ -96,19 +96,22 @@ ul{
 }
 
 #logo{
-	.spring(0,0);
 	position:absolute;
-	padding: 0 16px;
-	line-height:@header-height;
-	height: @header-height;
-	// height:48px;
-	width: 96px;
+	.spring(8,0,4,4);
+	left:50%;
+	margin-left: -2 * @spring-width;
 	
-	// font-family: 'MisoRegular';
-	// color: @base-color;
-	color: fade( @text-color, 10%);
-	text-shadow: 1px 1px 1px white;
-	font-size:22px;
+}
+
+#introduction{
+	border-top:1px solid white;
+	// border-bottom: 1px solid @base-color;
+
+}
+
+#schema{
+	.spring(0,4,20,6);
+	margin:@grid-padding auto;
 }
 
 #sciencespo-dimeshs-logo{
@@ -146,9 +149,10 @@ header{
 	
 	#header-inner{	
 		height:@header-height;
-		background:@page-color;
-		border-left: 1px solid darken( @page-color, 12%);
-		border-right: 1px solid darken( @page-color, 14%);
+		background:@header-color;
+		
+		//border-left: 1px solid darken( @page-color, 12%);
+		//border-right: 1px solid darken( @page-color, 14%);
 	}
 	
 	.edit-mode{
@@ -165,9 +169,9 @@ header{
 
 	ul{
 		padding:0 @grid-padding 0 0;
-		margin-left: @grid-padding*4;
-		
+		margin-left: 0px;//@grid-padding*4;
 		border-bottom: 1px solid darken( #f1f1f1, 2% );
+		
 		height: @header-height - 1;
 		li{
 			.sans-serif;
@@ -233,7 +237,7 @@ html{
 .page{
 	background: @page-color;
 	// padding-top: @header-height;
-	.box-shadow( 2px 2px 32px darken( @background-color, 20%) );
+	//.box-shadow( 2px 2px 32px darken( @background-color, 20%) );
 }
 
 .pin{
@@ -446,7 +450,8 @@ html{
 }
 sidebar{
 	position:fixed;
-	top: @header-height - 2;// + @grid-padding;
+	
+	// top: 260px;
 
 	margin-left: -@grid-padding/2;
 	width: @grid-padding * 3.8;
@@ -560,7 +565,8 @@ h1,h2{
 }
 @grid-padding: 36px;
 
-section{
+section, .section{
+	//background: #fafafa;
 	padding:@grid-padding 0 @grid-padding*2 @grid-padding*4;
 	>.edit-mode{
 		display: inline;

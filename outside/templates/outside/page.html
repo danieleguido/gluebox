@@ -15,8 +15,14 @@
 {% endblock %}
 
 {% block page %}
+	<section class="alpha">
+	<h1>{{ page.title }}</h1>
+	</section>
+		{% if edit_mode %}
+					
+				<div class="edit-mode add-pin" data-page-slug="{{ page.slug }}" style="text-align:center" rel="tooltip" title="{% trans "edit mode" %}: {% trans "add section" %}">[ {% trans "add pin" %} ]</div>
 
-
+					{% endif %}
 
 	{% for section in pins %}
 	<a id="{{ section.slug }}"></a>

@@ -4,7 +4,11 @@
 {% block body %}
 	<div class="wrapper container_12">
 	<header>
+		<div id="logo">
+				
+			</div>
 		<div id="header-inner" class="container_12">
+
 			<ul>
 				
 	
@@ -17,7 +21,7 @@
 				{% endif %}
 
 				<li{% if "index" in tags %} class="selected"{% endif %}>
-					<a href="{% url outside_index %}">outside</a>
+					<a href="{% url outside_index %}">accueil</a>
 				</li>
 				<!-- list of page according to desired language -->
 				{% for p in pages %}
@@ -37,10 +41,12 @@
 		
 		
 
-		<div class="page" >
+		<div class="page" data-page-slug="{{ page.slug }}">
 			
 			<sidebar class="navbar">
-				<a href="{% url outside_index %}"><div id="logo"></div></a>
+				<a href="{% url outside_index %}">
+
+				</a>
 			
 				<h1>{% block page_title %}{% endblock %}</h1>
 				
@@ -236,10 +242,12 @@
 {% block api_urls %}
 	
 	oo.urls = {
-		add_page:"{% url glue_api_pages %}",
-		add_pin:"{% url glue_api_pins %}",
-		edit_pin:"{% url glue_api_pin 0 %}",
-		get_pin:"{% url glue_api_pin 0 %}"
+		"add_page":"{% url glue_api_pages %}",
+		"add_pin":"{% url glue_api_pins %}",
+		"edit_pin":"{% url glue_api_pin 0 %}",
+		"get_pin":"{% url glue_api_pin 0 %}",
+		"publish_pin":"{% url glue_api_publish_pin 0 %}",
+		"pin_upload":"{% url glue_api_pin_upload %}"
 	};
 
 {% endblock %}
