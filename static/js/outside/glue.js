@@ -173,12 +173,19 @@ oo.glue.init = function(){ oo.log("[oo.glue.init]");
 		var el = $(this);
 		oo.log("[oo.glue.init:click] .add-pin", el.attr("data-page-slug"),  el.attr('data-parent-pin-slug') );
 		$('#add-pin-modal').modal('show');
+		
 		if( typeof el.attr('data-parent-pin-slug') == "undefined"){
 			$('#parent-pin-slug').empty();
 		} else {
 			$('#parent-pin-slug').html( "&rarr;" + el.attr('data-parent-pin-slug') )
-		
 		}
+
+		if( typeof el.attr('data-page-slug') == "undefined"){
+			$('#parent-page-slug').empty();	// news!
+		} else {
+			$('#parent-page-slug').html( "&rarr;" + el.attr('data-parent-slug') )
+		}
+
 		$('#add-pin').attr("data-parent-pin-slug", el.attr('data-parent-pin-slug') );
 		$('#add-pin').attr("data-page-slug", el.attr('data-page-slug') );
 

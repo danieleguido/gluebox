@@ -16,19 +16,38 @@ from glue.models import Pin, Page
 def index( request ):
 	data = shared_context( request, tags=[ "index" ] )
 	
-	if Page.objects.filter( slug="project", language=data['language'] ).count() > 0:
-		return page( request, "project")
-	
-	
-	# load all pins without page, without Enquete
-	data['pins'] = Pin.objects.filter(language=data['language'] ).order_by("-id")
+	try:
+		data['page'] = Page.objects.get( slug="index", language=data['language'])
+	except Page.DoesNotExist:
+		p_en = Page( title="Home Page", language='EN', slug="index")
+		p_en.save()
+
+		p_fr = Page( title="Home Page", language='FR', slug="index")
+		p_fr.save()
+
+		data['page'] = p_fr if data['language'] == 'FR' else p_en
+
+	# load all pins without page
+	data['pins'] = Pin.objects.filter(language=data['language'], page__slug="index" ).order_by("-id")
+
+	# get news
+	data['news'] = Pin.objects.filter(language=data['language'], page__isnull=True ).order_by("-id")
 
 	return render_to_response('outside/index.html', RequestContext(request, data ) )
+
+def news( request ):
+	data = shared_context( request, tags=[ "index" ] )
+	# load all pins without page
+	data['pins'] = Pin.objects.filter(language=data['language'], page__isnull=True ).order_by("-id")
+	return render_to_response('outside/page.html', RequestContext(request, data ) )
 
 def page( request, page_slug ):
 	data = shared_context( request, tags=[ page_slug ] )
 	data['page'] = get_object_or_404(Page, slug=page_slug, language=data['language'] )
 	data['pins'] = Pin.objects.filter( page__slug=page_slug, language=data['language'], parent=None)
+
+	# get news
+	data['news'] = Pin.objects.filter(language=data['language'], page__isnull=True ).order_by("-id")
 
 	return render_to_response('outside/page.html', RequestContext(request, data ) )
 
@@ -105,7 +124,7 @@ def shared_context( request, tags=[], previous_context={} ):
 	load_language( request, d )
 	
 
-	d['pages'] = [ p for p in Page.objects.filter( language=d['language'] ).order_by('id') ] # menu up. type PAGE should be translated via django trans tamplate tags.
+	d['pages'] = [ p for p in Page.objects.exclude( slug="index" ).filter( language=d['language'] ).order_by('id') ] # menu up. type PAGE should be translated via django trans tamplate tags.
 	
 	return d
 

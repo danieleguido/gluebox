@@ -6,9 +6,8 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
 	url(r'^$', 'outside.views.index', name='outside_index'),
-	url(r'^oo/', include('outside.urls')),
+	url(r'^/', include('outside.urls')),
 	url(r'^glue/', include('glue.urls')),
-
     # Examples:
     # url(r'^$', 'gluebox.views.home', name='home'),
     # url(r'^gluebox/', include('gluebox.foo.urls')),
