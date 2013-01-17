@@ -7,6 +7,7 @@ urlpatterns = patterns('',
 	url(r'^api/manage/(?P<model_name>[a-zA-Z_]+)/$', 'glue.api.manage_objects', name='glue_api_manage_objects'),
 	url(r'^api/manage/(?P<model_name>[a-zA-Z_]+)/(?P<pk>\d+)$', 'glue.api.manage_single_object', name='glue_api_manage_single_object'),
 
+	url(r'^api/test/$', 'glue.api.test', name='glue_api_test'), # get list, post single page
 
 	url(r'^api/page/$', 'glue.api.pages', name='glue_api_pages'), # get list, post single page
 	url(r'^api/page/(?P<page_id>\d+)/$', 'glue.api.page', name='glue_api_page'), 

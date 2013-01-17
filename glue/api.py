@@ -26,6 +26,10 @@ def manage_single_object( request, model_name, pk ):
 	# logger.info("Welcome to GLUEBOX api")
 	return Epoxy( request ).single( Page, {'pk':pk} ).json()
 
+def test( request ):
+	response = Epoxy( request )
+	return response.json()
+
 def pages(request):
 	# logger.info("Welcome to GLUEBOX api")
 	response = Epoxy( request )
