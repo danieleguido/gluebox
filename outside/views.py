@@ -1,3 +1,5 @@
+import os
+
 from django.http import HttpResponse, HttpRequest, HttpResponseRedirect
 from django.shortcuts import render_to_response, redirect, get_object_or_404
 from django.template import RequestContext
@@ -8,7 +10,7 @@ from glue.forms import LoginForm, AddPageForm, AddPinForm, EditPinForm
 
 
 from glue.models import Pin, Page
-
+from outside.configs import OUTSIDE_SITE_NAME, OUTSIDE_THEME
 #
 #    Outside
 #    =======
@@ -50,6 +52,26 @@ def page( request, page_slug ):
 	data['news'] = Pin.objects.filter(language=data['language'], page__isnull=True ).order_by("-id")
 
 	return render_to_response('outside/page.html', RequestContext(request, data ) )
+
+def download_view( request, pin_slug ):
+	data = shared_context( request )
+	pin = get_object_or_404(Pin, slug=pin_slug, language=data['language'] )
+
+	from mimetypes import guess_extension
+	import urllib
+	
+	try:
+		extension = guess_extension( pin.mimetype )
+		content_type = pin.mimetype
+	except AttributeError, e:
+		filetitle, extension = os.path.splitext( pin.local.url )
+		content_type = "application/octet-stream"
+
+	response = HttpResponse( open( os.path.join( settings.MEDIA_ROOT, urllib.unquote( pin.local.url ) ), 'r' ) , content_type=content_type  )
+	response['Content-Description'] = "File Transfer";
+	response['Content-Disposition'] = "attachment; filename=%s%s" % ( pin_slug, extension ) 
+	
+	return response
 
 def enquete( request, enquete_id ):
 	data = shared_context( request, tags=[ "enquetes" ] )
@@ -111,7 +133,9 @@ def shared_context( request, tags=[], previous_context={} ):
 	# startup
 	d = previous_context
 	d['tags'] = tags
-	d['stylesheet'] = "bequali-blog"
+	d['tags'].append( OUTSIDE_SITE_NAME )
+	d['site'] = OUTSIDE_SITE_NAME
+	d['stylesheet'] = OUTSIDE_THEME
 
 	# if it is not auth, pull loginform
 	if request.user.is_authenticated():
@@ -124,7 +148,7 @@ def shared_context( request, tags=[], previous_context={} ):
 	load_language( request, d )
 	
 
-	d['pages'] = [ p for p in Page.objects.exclude( slug="index" ).filter( language=d['language'] ).order_by('id') ] # menu up. type PAGE should be translated via django trans tamplate tags.
+	d['pages'] = [ p for p in Page.objects.filter( language=d['language'] ).order_by('id') ] # menu up. type PAGE should be translated via django trans tamplate tags.
 	
 	return d
 

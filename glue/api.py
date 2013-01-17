@@ -201,9 +201,11 @@ def pin_upload( request ):
 		# guess mimetype
 		pin_mimetype = mimetypes.guess_type( filename )[0]
 
+		filetitle, extension = os.path.splitext( f.name )
+
 		try:
-			p_en = Pin( title=f.name, language='EN', slug=slugify( f.name ), mimetype=pin_mimetype, local=os.path.join( pin_path, os.path.basename( filename ) ) )
-			p_fr = Pin( title=f.name, language='FR', slug=slugify( f.name ), mimetype=pin_mimetype, local=os.path.join( pin_path, os.path.basename( filename ) ) )
+			p_en = Pin( title=filetitle, language='EN', slug=slugify( "-".join( filetitle.split("_") ) ), mimetype=pin_mimetype, local=os.path.join( pin_path, os.path.basename( filename ) ) )
+			p_fr = Pin( title=filetitle, language='FR', slug=slugify( "-".join( filetitle.split("_") ) ), mimetype=pin_mimetype, local=os.path.join( pin_path, os.path.basename( filename ) ) )
 			p_en.save()
 			p_fr.save()
 
