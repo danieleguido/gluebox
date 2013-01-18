@@ -10,7 +10,7 @@ from glue.forms import LoginForm, AddPageForm, AddPinForm, EditPinForm
 
 
 from glue.models import Pin, Page
-from outside.configs import OUTSIDE_SITE_NAME, OUTSIDE_THEME
+from outside.configs import OUTSIDE_SITE_NAME, OUTSIDE_THEME, OUTSIDE_SITES_AVAILABLE
 #
 #    Outside
 #    =======
@@ -135,6 +135,7 @@ def shared_context( request, tags=[], previous_context={} ):
 	d['tags'] = tags
 	d['tags'].append( OUTSIDE_SITE_NAME )
 	d['site'] = OUTSIDE_SITE_NAME
+	d['sites_available'] = OUTSIDE_SITES_AVAILABLE
 	d['stylesheet'] = OUTSIDE_THEME
 
 	# if it is not auth, pull loginform

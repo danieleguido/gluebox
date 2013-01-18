@@ -99,6 +99,7 @@ ul{
 #logo{
 	position:absolute;
 	.spring(0,0,7,4);
+	background-position: 0px -3px;
 	left:50%;
 	margin-left: -3.5 * @spring-width;
 	
@@ -547,7 +548,7 @@ html{
 sidebar{
 	position:fixed;
 	display: none;
-	// top: 260px;
+	top: 260px;
 
 	margin-left: -@grid-padding/2;
 	width: @grid-padding * 3.8;
@@ -633,29 +634,25 @@ sidebar{
 
 
 #right-sidebar{
-	background:black;//darken(@right-sidebar-color, 10);
+	background: @base-color; // lighten(@page-color, 1%);
 	margin:0px;
 	display:inline; float:right;
 	width:240px;
 	// height:400px;
-	color: white;
-	border-left:1px solid white;
-	.box-shadow( inset 0px 0px 1px darken( @right-sidebar-color, 25%));
-	text-shadow: 1px 1px darken( @right-sidebar-color, 15%);
-
+	
+	border-left:1px solid darken(@page-color, 10%);
+	
 	& > .pin{
-		border-bottom:1px solid darken( @right-sidebar-color, 15%);
-		border-top:1px solid fade(white,10%);
 		padding: @grid-padding;
 		.abstract{
 			.serif-slant( 15px );
-			color: fade( white,60%);
+			// color: fade( white,60%);
 			padding: 0 @grid-padding/2 @grid-padding/6 0;
 		}
 		.date{
-			padding: @grid-padding/6 @grid-padding/2 0 @grid-padding/2;
-			color: @base-color;
-			.mono(16px);
+			// padding: @grid-padding/6 @grid-padding/2 0 @grid-padding/2;
+			// color: @base-color;
+			.mono(14px);
 		}
 		.content{
 			display:none;
@@ -664,7 +661,7 @@ sidebar{
 		h2{
 			.serif(19px);
 			color: white;
-			text-shadow: 1px 1px darken( @right-sidebar-color, 15%);
+			text-shadow: 1px 1px darken( @right-sidebar-color, 5%);
 		
 		}
 	}

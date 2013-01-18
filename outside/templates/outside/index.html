@@ -12,13 +12,13 @@
 	{{ block.super }}
 	{% for p in pins %}
 	<div class="section expand alpha">
-		
+		{% comment %}
 		<div class="marker-wrapper">
 			<div class="marker" >
 				{{ p.date_last_modified|date:"d M." }}
 			</div>
 		</div>
-
+		{% endcomment %}
 		<a id="{{ p.slug }}"></a>
 		<h2>{{ p.title }}</h2>
 		{% if p.local %}

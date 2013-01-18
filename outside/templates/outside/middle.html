@@ -4,17 +4,19 @@
 
 
 {% block body %}
+	{% if sites_available %}
 	<div id="band-aid">
 		<div class="container_12">
 			<ul>
-				<li {% ifequal site "bequali"%} class="selected"{% endifequal %} ><a href="#"><span class="cyan">beQ</span>uali</a></li>
-				<li {% ifequal site "quali2" %} class="selected"{% endifequal %}><a href="#"><span class="cyan">Q</span>uali2</a></li>
-				<li {% ifequal site "reanalyse" %} class="selected"{% endifequal %}> <a href="#"><span class="cyan">reA</span>nalyse</a></li>
-				<li {% ifequal site "dimequali" %} class="selected"{% endifequal %}><a href="#"><span class="cyan">DIMEQ</span>uali</a></li>
+				{% for s in sites_available %}
+				<li {% ifequal site s.name %} class="selected"{% endifequal %} data-title="{{ s.title }}" data-content="{{ s.content }}" data-placement="bottom"><a href="{{ s.url }}">{{ s.label|safe }}</a></li>
+				{% endfor %}
+				
 			</ul>
 			<div style="clear:both"></div>
 		</div>
 	</div>
+	{% endif %}
 	<div class="wrapper">
 		<div class="container_12">
 		
@@ -132,7 +134,7 @@
 								<div class="pin">
 									<h2>{{ p.title }}</h2>
 									<div class="date">{{ p.date_last_modified|date:"d M. Y" }}</div>
-									<div class="abstract">{{ p.abstract }}</div>
+									<div class="abstract">{{ p.abstract }}{% for u in p.users.all %}{{ u.username }}{% endfor %}</div>
 									
 								</div>
 							{% endfor %}
