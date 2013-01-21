@@ -10,7 +10,7 @@ from glue.forms import LoginForm, AddPageForm, AddPinForm, EditPinForm
 
 
 from glue.models import Pin, Page
-from outside.configs import OUTSIDE_SITE_NAME, OUTSIDE_THEME, OUTSIDE_SITES_AVAILABLE
+from outside.configs import OUTSIDE_SITE_NAME, OUTSIDE_THEME, OUTSIDE_SITES_AVAILABLE, OUTSIDE_TEMPLATE_DIR
 from outside.forms import SubscriberForm
 #
 #    Outside
@@ -36,13 +36,13 @@ def index( request ):
 	# get news
 	data['news'] = Pin.objects.filter(language=data['language'], page__isnull=True ).order_by("-id")
 
-	return render_to_response('outside/index.html', RequestContext(request, data ) )
+	return render_to_response(  "%s/index.html" % data['template'], RequestContext(request, data ) )
 
 def news( request ):
-	data = shared_context( request, tags=[ "index" ] )
+	data = shared_context( request, tags=[ "news" ] )
 	# load all pins without page
 	data['pins'] = Pin.objects.filter(language=data['language'], page__isnull=True ).order_by("-id")
-	return render_to_response('outside/page.html', RequestContext(request, data ) )
+	return render_to_response("%s/blog.html" % data['template'], RequestContext(request, data ) )
 
 def page( request, page_slug ):
 	data = shared_context( request, tags=[ page_slug ] )
@@ -52,7 +52,7 @@ def page( request, page_slug ):
 	# get news
 	data['news'] = Pin.objects.filter(language=data['language'], page__isnull=True ).order_by("-id")
 
-	return render_to_response('outside/page.html', RequestContext(request, data ) )
+	return render_to_response("%s/page.html" % data['template'], RequestContext(request, data ) )
 
 def download_view( request, pin_slug ):
 	data = shared_context( request )
@@ -138,6 +138,7 @@ def shared_context( request, tags=[], previous_context={} ):
 	d['site'] = OUTSIDE_SITE_NAME
 	d['sites_available'] = OUTSIDE_SITES_AVAILABLE
 	d['stylesheet'] = OUTSIDE_THEME
+	d['template'] = OUTSIDE_TEMPLATE_DIR
 
 	d['subscriber_form'] = SubscriberForm( auto_id="id_subscriber_%s")
 

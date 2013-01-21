@@ -2,12 +2,16 @@ var oo = oo || {}; oo.vars.sidebar = oo.vars.sidebar || {};
 
 oo.sidebar = {  is_hidden:false, element:[] };
 oo.sidebar.init = function(){
+	oo.log("[oo.sidebar.init]");
 	oo.sidebar.is_hidden = false;
 	oo.sidebar.element = $("sidebar");
 	$("#collapse-menu").click( oo.sidebar.collapse );
 	$("#expand-menu").click( oo.sidebar.expand );
 
-	// $("#right-sidebar").height($(".page").first().height());
+	var page_height = $(".page").first().height();
+	var sidebar_height = $("#right-sidebar").height();
+
+	$("#right-sidebar").height( Math.max( page_height,sidebar_height ) );
 }
 
 oo.sidebar.collapse = function(){

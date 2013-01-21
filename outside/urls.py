@@ -7,8 +7,11 @@ urlpatterns = patterns('',
 	url(r'^logout/$','outside.views.logout_view', name='outside_logout'),
 	url(r'^download/(?P<pin_slug>[a-z0-9-_]+)/$','outside.views.download_view', name='outside_download'),
 
+	# special pages before auto /page
 	url(r'^news/$','outside.views.news', name='outside_news'),
+	url(r'^index/$','outside.views.index', name='outside_index'),
 
+	
 	# api outside specific: subscribers etc...
 	url(r'^api/subscriber/$', 'outside.api.subscribers', name='outside_api_subscribers'),
 	url(r'^api/subscriber/(?P<subscriber_id>\d+)/$', 'outside.api.subscriber', name='outside_api_subscriber'),
