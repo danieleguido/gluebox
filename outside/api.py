@@ -6,7 +6,11 @@ from glue.models import Pin
 from glue.misc import Epoxy, API_EXCEPTION_FORMERRORS, API_EXCEPTION_INTEGRITY
 from outside.models import Subscriber
 from outside.forms import SubscriberForm
-
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth import login, logout, authenticate
+from outside.forms import LoginForm
+from django.contrib.auth import login, logout, authenticate
 
 #
 #    API CUSTOM DECORATORS
@@ -54,4 +58,20 @@ def subscribers(request):
 
 def subscriber( request, subscriber_id ):
 	return Epoxy( request ).single( Subscriber, {'id':subscriber_id} ).json()
+	
+@csrf_exempt
+def login(request):
+	logout(request)
+	response = Epoxy(request)
+	
+	form = LoginForm( request.POST )
+	if form.is_valid():
+		user = authenticate(username=request.POST['username'], password=request.POST['password'])
+	else:
+		return response.throw_error(error=form.errors, code=API_EXCEPTION_FORMERRORS ).json()
+	
+	if user is None:
+		return response.throw_error(error="access denied" ).json()
+	
+	return response.json()
 

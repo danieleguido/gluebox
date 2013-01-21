@@ -8,4 +8,7 @@ class SubscriberForm (forms.Form):
     affiliation = forms.CharField( max_length = 128, required=False )
     accepted_terms = forms.BooleanField()
     description = forms.CharField( widget=forms.Textarea) # personal description
-    # captcha = CaptchaField()
+
+class LoginForm( forms.Form ):
+	username = forms.CharField( max_length=32, widget=forms.TextInput )
+	password = forms.CharField( max_length=64, label='Password', widget=forms.PasswordInput(render_value=False ) )
