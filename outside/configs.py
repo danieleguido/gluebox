@@ -1,9 +1,18 @@
+#!/usr/bin/env python
+# -*- coding: utf8 -*- 
 # context variables
 
-OUTSIDE_SITE_NAME = "quali2"
-OUTSIDE_THEME = "quali2"
+OUTSIDE_SITE_NAME = "bequali"
+OUTSIDE_THEME = "bequali"
 
 OUTSIDE_SITES_AVAILABLE = [
+	{
+		'name':'bequali',
+		'url':'http://quali.dime-shs.sciences-po.fr',
+		'label':'<span class="cyan">beQ</span>uali',
+		'title':'Le Portail',
+		'content':'banque d’enquêtes qualitatives, instrument de l’equipex DIME-SHS'
+	},
 	{
 		'name':'quali2',
 		'url':'http://quali.dime-shs.sciences-po.fr/quali2/',
@@ -11,19 +20,13 @@ OUTSIDE_SITES_AVAILABLE = [
 		'title':'Le site Ressource',
 		'content':'a very long content, indeed !dsdsdsds'
 	},
-	{
-		'name':'bequali',
-		'url':'http://quali.dime-shs.sciences-po.fr/quali2/',
-		'label':'<span class="cyan">Q</span>uali2',
-		'title':'Le site Ressource',
-		'content':'a very long content, indeed !'
-	},
+	
 	{
 		'name':'reanalyse',
 		'url':'http://quali.dime-shs.sciences-po.fr/reanalyse/',
 		'label':'<span class="cyan">reA</span>nalyse',
 		'title':'Le site Ressource',
-		'content':'a very long content, indeed !'
+		'content':'projet ANR d’expérimentation de l’analyse secondaire des données qualitatives'
 	},
 	{
 		'name':'archipolis',
@@ -32,4 +35,11 @@ OUTSIDE_SITES_AVAILABLE = [
 		'title':'Le site Ressource',
 		'content':'a very long content, indeed !'
 	},
+	{
+		'name':'les enquetes',
+		'url':'http://quali.dime-shs.sciences-po.fr/app/',
+		'label':'<span class="cyan">Enqueto</span>polis',
+		'title':'Le site Ressource',
+		'content':'a very long content, indeed !'
+	}
 ]

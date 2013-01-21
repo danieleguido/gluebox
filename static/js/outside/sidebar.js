@@ -7,7 +7,7 @@ oo.sidebar.init = function(){
 	$("#collapse-menu").click( oo.sidebar.collapse );
 	$("#expand-menu").click( oo.sidebar.expand );
 
-	$("#right-sidebar").height($(".page").first().height());
+	// $("#right-sidebar").height($(".page").first().height());
 }
 
 oo.sidebar.collapse = function(){

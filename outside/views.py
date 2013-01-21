@@ -11,6 +11,7 @@ from glue.forms import LoginForm, AddPageForm, AddPinForm, EditPinForm
 
 from glue.models import Pin, Page
 from outside.configs import OUTSIDE_SITE_NAME, OUTSIDE_THEME, OUTSIDE_SITES_AVAILABLE
+from outside.forms import SubscriberForm
 #
 #    Outside
 #    =======
@@ -137,6 +138,8 @@ def shared_context( request, tags=[], previous_context={} ):
 	d['site'] = OUTSIDE_SITE_NAME
 	d['sites_available'] = OUTSIDE_SITES_AVAILABLE
 	d['stylesheet'] = OUTSIDE_THEME
+
+	d['subscriber_form'] = SubscriberForm( auto_id="id_subscriber_%s")
 
 	# if it is not auth, pull loginform
 	if request.user.is_authenticated():
