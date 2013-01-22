@@ -25,9 +25,13 @@
 							</a>
 						</li>
 						{% else %}
+						
 						<li style="float:right;">
-					<a href="#login" data-toggle="modal" data-target="#login-modal">{% trans "login" %}</a>
-				</li>
+							<a href="#login" data-toggle="modal" data-target="#login-modal">{% trans "login" %}</a>
+						</li>
+						<li style="float:right;">
+							<a href="cont">{% trans "sign up" %}</a>
+						</li>
 						{% endif %}
 
 						{% comment %}
@@ -37,7 +41,8 @@
 						<li style="float:right" {% ifequal language "FR" %} class="selected"{% endifequal %}>
 							<a href="{{  request.path }}?lang=fr">{% trans "french" %}</a>
 						</li>
-			
+						
+						
 						{% endcomment %}
 
 						{% if has_edit_mode and user.is_authenticated %}
@@ -141,6 +146,7 @@
 
 					<div id="right-sidebar" >
 						{% block page_right %}	
+							<h1>{% trans "news" %}</h1>
 							{% if edit_mode %}
 								<div class="edit-mode add-pin" data-page-slug="" style="text-align:center" rel="tooltip" title="{% trans "edit mode" %}: {% trans "add news" %}">[ {% trans "add news" %} ]
 								</div>
@@ -148,14 +154,14 @@
 
 							{% for p in news %}
 								<div class="pin">
-									
+									<a href="{% url outside_news %}#{{ p.slug }}">
 									<div class="date-wrapper">
 										<div class="date">{{ p.date_last_modified|date:"d M." }}</div>
 									</div>
 									<h2>{{ p.title }}</h2>
 									<!-- div class="date">{{ p.date_last_modified|date:"d M. Y" }}</div -->
 									<div class="abstract">{% if p.abstract %}{{ p.abstract }}{% else %}an abstract ici{% endif %}{% for u in p.users.all %}{{ u.username }}{% endfor %}</div>
-									
+									</a>
 								</div>
 							{% endfor %}
 							
@@ -193,6 +199,11 @@
 							<label for="email">{% trans "email" %}</label>
 							{{ subscriber_form.email }}
 
+							<label for="affiliation">{% trans "status" %}
+								
+							</label>
+							<p>{{ subscriber_form.status }}</p>
+
 							<label for="affiliation">{% trans "affiliation" %}
 								<div class="specification">{% trans "university or institution" %}</div>
 							</label>
@@ -202,6 +213,8 @@
 								<div class="specification">{% trans "message" %}</div>
 							</label>
 							{{ subscriber_form.description }}
+
+							
 
 							<label for="accepted_terms">{% trans "accepted terms" %}
 								<div class="specification">{% trans "accept terms" %}</div>

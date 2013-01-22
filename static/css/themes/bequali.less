@@ -367,7 +367,7 @@ html{
  			margin-right: @grid-padding * 5;
  		}
  		>.abstract{
- 			.serif-italic(16px);
+ 			.serif-italic(16px, normal);
  			padding-left: @grid-padding;
  		}
  	}
@@ -667,15 +667,28 @@ sidebar{
 	border-left:4px solid darken(#383838, 4%);
 	border-bottom:3px solid darken(#383838, 4%);
 	
+	& > h1{
+		.serif-slant( 18px);
+		padding: 0;
+		margin: 0;
+		text-align:center;
+		color: #d4d1cd;
+	}
 
 	& > .pin{
-		padding: @grid-padding*2/3 @grid-padding;
-		
+		a{
+			display:block;
+			padding: @grid-padding*2/3 @grid-padding;
+			&:hover h2{
+				text-decoration: underline;
+			}
+		}
 
 		&:not(:first-child){
 			border-top:1px solid darken(#383838, 4%);
+			border-bottom: 1px solid transparent;
 		}
-		& > .date-wrapper{
+		a > .date-wrapper{
 			position:absolute;
 			.date{
 				.mono(14px);
@@ -790,7 +803,7 @@ section, .section{
 		}
 	}
 	>.abstract{
-		.serif-italic( 20px);
+		.serif-italic( 20px, normal);
 		color: lighten( @text-color, 10%);
 		margin-bottom: @grid-padding / 2;
 		padding-left: @grid-padding;

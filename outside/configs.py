@@ -1,5 +1,6 @@
-#!/usr/bin/env python
-# -*- coding: utf8 -*- 
+#!/usr/bin/python
+# -*- coding: utf8 -*-
+
 # context variables
 
 OUTSIDE_SITE_NAME = "bequali"

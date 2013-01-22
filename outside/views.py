@@ -34,7 +34,7 @@ def index( request ):
 	data['pins'] = Pin.objects.filter(language=data['language'], page__slug="index" ).order_by("-id")
 
 	# get news
-	data['news'] = Pin.objects.filter(language=data['language'], page__isnull=True ).order_by("-id")
+	data['news'] = Pin.objects.filter(language=data['language'], page__isnull=True, status=Pin.published ).order_by("-id")
 
 	return render_to_response(  "%s/index.html" % data['template'], RequestContext(request, data ) )
 
