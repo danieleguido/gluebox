@@ -9,6 +9,7 @@ urlpatterns = patterns('',
 
 	# special pages before auto /page
 	url(r'^news/$','outside.views.news', name='outside_news'),
+	url(r'^contacts/$','outside.views.contacts', name='outside_contacts'),
 	url(r'^index/$','outside.views.index', name='outside_index'),
 
 	

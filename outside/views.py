@@ -44,6 +44,12 @@ def news( request ):
 	data['pins'] = Pin.objects.filter(language=data['language'], page__isnull=True ).order_by("-id")
 	return render_to_response("%s/blog.html" % data['template'], RequestContext(request, data ) )
 
+def contacts( request ):
+	data = shared_context( request, tags=[ "contacts" ] )
+	# load all pins without page (aka news)
+	data['pins'] = Pin.objects.filter(language=data['language'], page__isnull=True ).order_by("-id")
+	return render_to_response("%s/contacts.html" % data['template'], RequestContext(request, data ) )
+
 def page( request, page_slug ):
 	data = shared_context( request, tags=[ page_slug ] )
 	data['page'] = get_object_or_404(Page, slug=page_slug, language=data['language'] )
@@ -192,18 +198,21 @@ def load_language( request, d ):
 		# load from somewhere
 		language = request.LANGUAGE_CODE
 	
-	elif language in ['en','fr'] :
+	elif language in ['en','fr', 'it'] :
 		# @todo: a better language match in settings.LANGUAGES
 		if hasattr(request, 'session'):
 			request.session['django_language'] = language
 		else:
 			#response.set_cookie(settings.LANGUAGE_COOKIE_NAME, language)
 			translation.activate(language)
+		import django
+		django.utils.translation.activate(language)
 	else:
 		d['warnings'] = _('language not found')
 		language = 'fr'
 
 		d['available_languages'] = settings.LANGUAGES
 	d['language'] = language.upper()
-	
+	d['language_CODE'] = request.LANGUAGE_CODE
+
 	return language

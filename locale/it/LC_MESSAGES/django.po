@@ -1,0 +1,273 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-01-22 12:24+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: glue/api.py:75 glue/api.py:180
+msgid "selected page does not exists"
+msgstr ""
+
+#: glue/api.py:87
+#, python-format
+msgid "selected pin does not exists. Exception: %s"
+msgstr ""
+
+#: glue/forms.py:6 outside/templates/hub/login.html:30
+#: outside/templates/hub/middle.html:30 outside/templates/hub/middle.html:226
+#: outside/templates/hub/middle.html:235
+#: outside/templates/outside/login.html:30
+#: outside/templates/outside/middle.html:178
+#: outside/templates/outside/middle.html:218
+#: outside/templates/outside/middle.html:227
+msgid "login"
+msgstr "connettiti"
+
+#: glue/forms.py:7
+msgid "password"
+msgstr ""
+
+#: glue/forms.py:11 glue/forms.py:16
+msgid "french title"
+msgstr ""
+
+#: glue/forms.py:12 glue/forms.py:17
+msgid "english title"
+msgstr ""
+
+#: glue/forms.py:23
+msgid "title"
+msgstr ""
+
+#: glue/forms.py:24
+msgid "abstract"
+msgstr ""
+
+#: glue/forms.py:25
+msgid "content"
+msgstr ""
+
+#: outside/views.py:115
+msgid "user has been disabled"
+msgstr ""
+
+#: outside/views.py:117 outside/views.py:120
+msgid "invalid credentials"
+msgstr ""
+
+#: outside/views.py:209
+msgid "language not found"
+msgstr ""
+
+#: outside/templates/hub/blog.html:24 outside/templates/hub/middle.html:128
+#: outside/templates/hub/middle.html:146 outside/templates/hub/middle.html:158
+#: outside/templates/outside/middle.html:102
+#: outside/templates/outside/middle.html:120
+#: outside/templates/outside/middle.html:131
+#: outside/templates/outside/page.html:26
+msgid "edit mode"
+msgstr ""
+
+#: outside/templates/hub/blog.html:24 outside/templates/hub/middle.html:128
+#: outside/templates/hub/middle.html:146 outside/templates/hub/middle.html:268
+#: outside/templates/hub/middle.html:277
+#: outside/templates/outside/middle.html:102
+#: outside/templates/outside/middle.html:120
+#: outside/templates/outside/middle.html:260
+#: outside/templates/outside/middle.html:269
+#: outside/templates/outside/page.html:26
+msgid "add section"
+msgstr ""
+
+#: outside/templates/hub/blog.html:24 outside/templates/hub/middle.html:146
+#: outside/templates/outside/middle.html:120
+#: outside/templates/outside/page.html:26
+msgid "add pin"
+msgstr ""
+
+#: outside/templates/hub/blog.html:40 outside/templates/hub/index.html:33
+#: outside/templates/hub/page.html:33 outside/templates/outside/index.html:32
+#: outside/templates/outside/page.html:42
+msgid "edit content"
+msgstr ""
+
+#: outside/templates/hub/blog.html:41 outside/templates/hub/index.html:34
+#: outside/templates/hub/page.html:34 outside/templates/outside/index.html:33
+#: outside/templates/outside/page.html:43
+msgid "edit slug"
+msgstr ""
+
+#: outside/templates/hub/blog.html:42 outside/templates/hub/index.html:35
+#: outside/templates/hub/page.html:35 outside/templates/outside/index.html:34
+#: outside/templates/outside/page.html:44
+msgid "delete slug"
+msgstr ""
+
+#: outside/templates/hub/blog.html:45 outside/templates/hub/index.html:38
+#: outside/templates/hub/page.html:38 outside/templates/outside/index.html:37
+#: outside/templates/outside/page.html:47
+msgid "publish"
+msgstr ""
+
+#: outside/templates/hub/blog.html:47 outside/templates/hub/index.html:40
+#: outside/templates/hub/page.html:40 outside/templates/outside/index.html:39
+#: outside/templates/outside/page.html:49
+msgid "draftify"
+msgstr ""
+
+#: outside/templates/hub/contacts.html:13
+msgid "fill contact form"
+msgstr ""
+
+#: outside/templates/hub/contacts.html:21
+msgid "first name"
+msgstr ""
+
+#: outside/templates/hub/contacts.html:24
+msgid "last name"
+msgstr ""
+
+#: outside/templates/hub/contacts.html:27
+msgid "email"
+msgstr ""
+
+#: outside/templates/hub/contacts.html:30
+msgid "status"
+msgstr ""
+
+#: outside/templates/hub/contacts.html:35
+msgid "affiliation"
+msgstr ""
+
+#: outside/templates/hub/contacts.html:36
+msgid "university or institution"
+msgstr ""
+
+#: outside/templates/hub/contacts.html:40
+#: outside/templates/hub/contacts.html:41
+msgid "message"
+msgstr ""
+
+#: outside/templates/hub/contacts.html:47
+msgid "accepted terms"
+msgstr ""
+
+#: outside/templates/hub/contacts.html:48
+msgid "accept terms"
+msgstr ""
+
+#: outside/templates/hub/contacts.html:52
+msgid "send"
+msgstr ""
+
+#: outside/templates/hub/index.html:27 outside/templates/hub/page.html:27
+#: outside/templates/outside/index.html:26
+msgid "download as"
+msgstr ""
+
+#: outside/templates/hub/login.html:17 outside/templates/outside/login.html:17
+msgid "login required"
+msgstr ""
+
+#: outside/templates/hub/middle.html:24
+msgid "logout"
+msgstr ""
+
+#: outside/templates/hub/middle.html:33
+msgid "sign up"
+msgstr ""
+
+#: outside/templates/hub/middle.html:52
+#: outside/templates/outside/middle.html:189
+msgid "disable edit"
+msgstr ""
+
+#: outside/templates/hub/middle.html:53
+#: outside/templates/outside/middle.html:190
+msgid "disable edit mode"
+msgstr ""
+
+#: outside/templates/hub/middle.html:59 outside/templates/hub/middle.html:60
+#: outside/templates/outside/middle.html:196
+#: outside/templates/outside/middle.html:197
+msgid "enable edit mode"
+msgstr ""
+
+#: outside/templates/hub/middle.html:59
+#: outside/templates/outside/middle.html:196
+msgid "edit"
+msgstr ""
+
+#: outside/templates/hub/middle.html:67 outside/templates/hub/middle.html:249
+#: outside/templates/hub/middle.html:259
+#: outside/templates/outside/middle.html:49
+#: outside/templates/outside/middle.html:241
+#: outside/templates/outside/middle.html:251
+msgid "add page"
+msgstr ""
+
+#: outside/templates/hub/middle.html:99 outside/templates/hub/middle.html:156
+msgid "news"
+msgstr ""
+
+#: outside/templates/hub/middle.html:103
+msgid "contacts"
+msgstr ""
+
+#: outside/templates/hub/middle.html:134
+#: outside/templates/outside/middle.html:108
+msgid "collapse menu"
+msgstr ""
+
+#: outside/templates/hub/middle.html:135
+#: outside/templates/outside/middle.html:109
+msgid "expand menu"
+msgstr ""
+
+#: outside/templates/hub/middle.html:158
+#: outside/templates/outside/middle.html:131
+msgid "add news"
+msgstr ""
+
+#: outside/templates/hub/middle.html:234
+#: outside/templates/outside/middle.html:226
+msgid "discard"
+msgstr ""
+
+#: outside/templates/hub/middle.html:258 outside/templates/hub/middle.html:276
+#: outside/templates/hub/middle.html:321
+#: outside/templates/outside/middle.html:250
+#: outside/templates/outside/middle.html:268
+#: outside/templates/outside/middle.html:313
+msgid "cancel"
+msgstr ""
+
+#: outside/templates/hub/middle.html:268
+#: outside/templates/outside/middle.html:260
+msgid "add section into"
+msgstr ""
+
+#: outside/templates/hub/middle.html:271
+#: outside/templates/outside/middle.html:263
+msgid "add section rules"
+msgstr ""
+
+#: outside/templates/hub/middle.html:288 outside/templates/hub/middle.html:322
+#: outside/templates/outside/middle.html:280
+#: outside/templates/outside/middle.html:314
+msgid "edit section"
+msgstr ""

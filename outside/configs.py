@@ -3,7 +3,7 @@
 
 # context variables
 
-OUTSIDE_SITE_NAME = "bequali"
+OUTSIDE_SITE_NAME = "reanalyse"
 OUTSIDE_THEME = "bequali"
 OUTSIDE_TEMPLATE_DIR = "hub"
 
@@ -16,14 +16,6 @@ OUTSIDE_SITES_AVAILABLE = [
 		'content':'banque d’enquêtes qualitatives, instrument de l’equipex DIME-SHS',
 		'template':'hub'
 	},
-	{
-		'name':'quali2',
-		'url':'http://quali.dime-shs.sciences-po.fr/quali2/',
-		'label':'<span class="cyan">Q</span>uali2',
-		'title':'Le site Ressource',
-		'content':'a very long content, indeed !dsdsdsds',
-		'template':'hub'
-	},
 	
 	{
 		'name':'reanalyse',
@@ -33,6 +25,16 @@ OUTSIDE_SITES_AVAILABLE = [
 		'content':'projet ANR d’expérimentation de l’analyse secondaire des données qualitatives',
 		'template':'hub'
 	},
+	{
+		'name':'quali2',
+		'url':'http://quali.dime-shs.sciences-po.fr/quali2/',
+		'label':'<span class="cyan">Q</span>uali2',
+		'title':'Le site Ressource',
+		'content':'a very long content, indeed !dsdsdsds',
+		'template':'hub'
+	},
+	
+	
 	{
 		'name':'archipolis',
 		'url':'http://quali.dime-shs.sciences-po.fr/archipolis/',
