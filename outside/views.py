@@ -5,12 +5,13 @@ from django.shortcuts import render_to_response, redirect, get_object_or_404
 from django.template import RequestContext
 from django.conf import settings
 from django.utils.translation import ugettext as _
+from django.utils.translation import activate
 from django.contrib.auth import login, logout, authenticate
 from glue.forms import LoginForm, AddPageForm, AddPinForm, EditPinForm
 
 
 from glue.models import Pin, Page
-from outside.configs import OUTSIDE_SITE_NAME, OUTSIDE_THEME, OUTSIDE_SITES_AVAILABLE, OUTSIDE_TEMPLATE_DIR
+from outside.configs import OUTSIDE_SITES_AVAILABLE
 from outside.forms import SubscriberForm
 #
 #    Outside
@@ -140,11 +141,11 @@ def shared_context( request, tags=[], previous_context={} ):
 	# startup
 	d = previous_context
 	d['tags'] = tags
-	d['tags'].append( OUTSIDE_SITE_NAME )
-	d['site'] = OUTSIDE_SITE_NAME
+	d['tags'].append( settings.OUTSIDE_SITE_NAME )
+	d['site'] = settings.OUTSIDE_SITE_NAME
 	d['sites_available'] = OUTSIDE_SITES_AVAILABLE
-	d['stylesheet'] = OUTSIDE_THEME
-	d['template'] = OUTSIDE_TEMPLATE_DIR
+	d['stylesheet'] = settings.OUTSIDE_THEME
+	d['template'] = settings.OUTSIDE_TEMPLATE_DIR
 
 	d['subscriber_form'] = SubscriberForm( auto_id="id_subscriber_%s")
 
@@ -192,6 +193,10 @@ def load_edit_mode( request, d ):
 #	d is context dictionary
 #
 def load_language( request, d ):
+	language = 'fr'
+	d['language'] = language.upper()
+	return language
+
 	language = request.GET.get('lang', None)
 
 	if language is None:
@@ -205,14 +210,11 @@ def load_language( request, d ):
 		else:
 			#response.set_cookie(settings.LANGUAGE_COOKIE_NAME, language)
 			translation.activate(language)
-		import django
-		django.utils.translation.activate(language)
 	else:
 		d['warnings'] = _('language not found')
 		language = 'fr'
 
 		d['available_languages'] = settings.LANGUAGES
 	d['language'] = language.upper()
-	d['language_CODE'] = request.LANGUAGE_CODE
 
 	return language

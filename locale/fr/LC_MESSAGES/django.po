@@ -24,7 +24,7 @@ msgid "login"
 msgstr "se connecter"
 
 msgid "selected page does not exists"
-msgstr ""
+msgstr "fdfd"
 
 msgid "selected"
 msgstr "selectionnee"

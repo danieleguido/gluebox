@@ -13,7 +13,7 @@
 
 @header-height:45px; // 32px;
 @header-color: darken( #f1f1f1, 3% );
-@footer-height: 80px;
+@footer-height: 92px;
 @footer-bottom: 12px;
 
 @page-color: #f4f4f4;
@@ -304,21 +304,25 @@ html{
 }
 
 .footer, footer{
-	background: darken( @page-color, 5%);
+	// background: darken( @page-color, 5%);
 	
 }
 
 #footer-inner{
-	height: @footer-height;
+	height: @footer-height - @grid-padding;
 	background: @base-color;
+	margin-top: @grid-padding;
 	
-	border-left: 1px solid darken( @page-color, 18%);
-	border-right: 1px solid darken( @page-color, 19%);
-	
+	.box-shadow( 0px 0px 1px fade( black, 20%) );
+	border-top: 1px solid darken( @base-color, 8%);
+	border-left: 1px solid darken( @base-color, 12%);
+	border-right: 1px solid darken( @base-color, 14%);
+	border-bottom: 1px solid darken( @base-color, 18%);
+
 	ul{
 		padding: 0;
 		margin: 0;
-		border-top: 4px solid fade(#2e2e2e,25%);
+		// border-top: 4px solid fade(#2e2e2e,25%);
 		
 
 	}
@@ -332,7 +336,7 @@ html{
 	.box-shadow( 0px 0px 1px fade( black, 20%) );
 	border-left: 1px solid darken( @page-color, 12%);
 	border-right: 1px solid darken( @page-color, 14%);
-	//border-bottom: 1px solid darken( @base-color, 16%);
+	border-bottom: 1px solid darken( @page-color, 18%);
 
 	// padding-top: @header-height;
 	//.box-shadow( 2px 2px 32px darken( @background-color, 20%) );
@@ -812,13 +816,13 @@ section, .section{
 		}
 	}
 	>.abstract{
-		.serif-slant( 20px, normal);
+		.serif( 20px, normal);
 		color: lighten( @text-color, 10%);
 		margin-bottom: @grid-padding / 2;
 		padding-left: @grid-padding;
 		margin-right: @grid-padding*5;
 		i{
-			.serif-italic( 17px );
+			.serif-italic( 20px );
 		}
 	}
 

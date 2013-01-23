@@ -33,7 +33,7 @@
 			</div>
 		</div>
 		<a id="{{ p.slug }}"></a>
-		<h2>{{ p.title }}</h2>
+		<h2>{{ p.title|safe }}</h2>
 		<div class="author"><a href="">{% for u in p.users.all %}{{ u.username }}{% endfor %}</a></div>
 
 		{% if edit_mode %}

@@ -23,6 +23,9 @@ class Subscriber( models.Model ):
 	accepted_terms = models.BooleanField()
 	description = models.TextField() # personal description
 	
+	def __unicode__(self):
+		return "%s %s <%s>" % (self.last_name.upper(), self.first_name, self.email )
+
 	def json( self ):
 		return {
 			'id': self.id,
