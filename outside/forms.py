@@ -1,6 +1,6 @@
 from django import forms
 from outside.models import Subscriber
-# from captcha.fields import CaptchaField
+from recaptcha.client import captcha
 
 class SubscriberForm (forms.Form):
 

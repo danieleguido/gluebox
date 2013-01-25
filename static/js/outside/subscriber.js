@@ -21,6 +21,9 @@ oo.magic.subscriber.add = function(){
     ===================
 
 */
+
+
+
 oo.api.subscriber = {};
 oo.api.subscriber.add = function( params ){
 	$.ajax( $.extend( oo.api.settings.post,{
@@ -29,6 +32,23 @@ oo.api.subscriber.add = function( params ){
 		success:function(result){
 			oo.log( "[oo.api.subscriber.add] result:", result );
 			oo.api.process( result, oo.magic.subscriber.add, "id_subscriber" );
+			if(result.status == 'ok'){
+					
+					oo.toast( 
+						oo.i18n.translate('contact message sended'), 
+						oo.i18n.translate('sended message'), 
+						{
+							stayTime:3000, 
+							cleanup: true, 
+							close:function(){
+								window.location = oo.urls.outside_index
+								
+						
+							}
+						}
+					);
+				
+			}
 		}
 	}));
 };

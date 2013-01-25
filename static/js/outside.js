@@ -171,7 +171,7 @@ oo.i18n.dict = {
 		"loading":"chargement en cours…",
 		"form errors":"Erreurs dans le formulaire",
 		"error":"Erreur",
-		"invalid form":"Veuillez vérifier les champs en rouge.",
+		"invalid form":"Veuillez remplir les champs obligatoires et cocher les termes.",//"Veuillez vérifier les champs en rouge.",
 		"empty dates":"Les dates de dé en rouge.",
 		"empty message field":"Le message est vide.",
 		"message sent":"Message envoyé",
@@ -190,6 +190,9 @@ oo.i18n.dict = {
 		"sms invalid message":"Le texte du SMS est invalide.",
 		"sms invalid phone numbers":"Numéro(s) de téléphone invalide(s)",
 		"list numbers sms failure":"Certains SMS n'ont pu être envoyés.",
-		"to change password": "Veuillez changer votre <br/> <b>mot de passe</b>"
+		"to change password": "Veuillez changer votre <br/> <b>mot de passe</b>",
+		"contact message sended":"Votre message est bien envoyé, nous allons traiter votre demande",
+		"sended message ":"message envoyé",
+		"email already added ":"Cet email est dejà inscrit",
 	}
 };
