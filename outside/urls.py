@@ -11,7 +11,7 @@ urlpatterns = patterns('',
 	url(r'^news/$','outside.views.news', name='outside_news'),
 	url(r'^contacts/$','outside.views.contacts', name='outside_contacts'),
 	url(r'^index/$','outside.views.index', name='outside_index'),
-
+	url(r'^legal-notice/$','outside.views.legal', name='outside_legal'),
 	
 	# api outside specific: subscribers etc...
 	url(r'^api/subscriber/$', 'outside.api.subscribers', name='outside_api_subscribers'),

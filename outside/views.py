@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf8 -*-
+
 import os
 
 from django.http import HttpResponse, HttpRequest, HttpResponseRedirect
@@ -38,6 +41,32 @@ def index( request ):
 	data['news'] = Pin.objects.filter(language=data['language'], page__isnull=True, status=Pin.published ).order_by("-id")
 
 	return render_to_response(  "%s/index.html" % data['template'], RequestContext(request, data ) )
+
+
+def legal( request ):
+	data = shared_context( request, tags=[ "legal" ] )
+	
+	try:
+		data['page'] = Page.objects.get( slug="legal-notice", language=data['language'])
+	except Page.DoesNotExist:
+		p_en = Page( title="Legal", language='EN', slug="legal-notice")
+		p_en.save()
+
+		p_fr = Page( title="Mentions légales", language='FR', slug="legal-notice")
+		p_fr.save()
+
+		data['page'] = p_fr if data['language'] == 'FR' else p_en
+
+	# load all pins without page
+	data['pins'] = Pin.objects.filter(language=data['language'], page__slug="legal-notice" ).order_by("-id")
+
+	# get news
+	data['news'] = Pin.objects.filter(language=data['language'], page__isnull=True, status=Pin.published ).order_by("-id")
+
+	return render_to_response(  "%s/legal.html" % data['template'], RequestContext(request, data ) )
+
+def _get_news():
+	pass
 
 def news( request ):
 	data = shared_context( request, tags=[ "news" ] )
@@ -160,7 +189,7 @@ def shared_context( request, tags=[], previous_context={} ):
 	load_language( request, d )
 	
 
-	d['pages'] = [ p for p in Page.objects.filter( language=d['language'] ).order_by('id') ] # menu up. type PAGE should be translated via django trans tamplate tags.
+	d['pages'] = [ p for p in Page.objects.exclude(slug="legal-notice").filter( language=d['language'] ).order_by('id') ] # menu up. type PAGE should be translated via django trans tamplate tags.
 	
 	return d
 

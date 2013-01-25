@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: utf8 -*-
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -5,12 +7,24 @@ from django.contrib.auth.models import User
 # a profile for the given user
 class Subscriber( models.Model ):
 
+	RESEARCHER = 'RES'
 	PHD_STUDENT = 'PHD'
+	MS_STUDENT = 'MSS'
 	PROFESSOR = 'PRO'
 
+	ENGINEEER = 'ENG'
+	POST_DOC = 'POD'
+	OTHER = 'OTH'
+
 	STATUS_CHOICES = (
-		(PHD_STUDENT, 'PHD Student'),
-		(PROFESSOR, 'Professor')	
+		(RESEARCHER, 'Chercheur Statutaire'),
+		(PHD_STUDENT, 'Doctorant'),
+		(MS_STUDENT, 'Étudiant - Master'),
+		(PROFESSOR, 'Enseignant-Chercheur'),
+
+		(ENGINEEER, 'Ingénieur'),
+		(POST_DOC, 'Post Doc'),
+		(OTHER, 'Autre'),
 	)
 
 

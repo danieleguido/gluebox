@@ -108,11 +108,11 @@
 					{% endfor %}
 					
 					<li{% if 'news' in tags %} class="selected"{% endif %}>
-						<a href="{% url outside_news %}">{% trans "news"%}</a>
+						<a href="{% url outside_news %}">{% trans "actualités"%}</a>
 					</li>
 
 					<li{% if 'contacts' in tags %} class="selected"{% endif %}>
-						<a href="{% url outside_contacts %}">{% trans "contacts"%}</a>
+						<a href="{% url outside_contacts %}">{% trans "contact"%}</a>
 					</li>
 
 				</ul>
@@ -223,7 +223,7 @@
 					</li>
 					{% endcomment %}
 
-					
+					<li><a href="{% url outside_legal %}">mentions légales</a></li>
 		
 				</ul>
 			</div>
