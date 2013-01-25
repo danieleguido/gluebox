@@ -52,6 +52,13 @@ oo.api.process = function( result, callback, namespace ){
 		oo.toast(  oo.i18n.translate("invalid form") , oo.i18n.translate("error"), {stayTime:3000, cleanup: true});
 	} else {
 		oo.toast( result.error , oo.i18n.translate("error"), {stayTime:3000, cleanup: true});
+		
+		if(result.code == 'IntegrityError'){
+			if(result.error == 'column email is not unique'){
+				oo.toast( oo.i18n.translate("email already added") , oo.i18n.translate("error"), {stayTime:3000, cleanup: true});
+			}
+			
+		}
 	}
 }
 
@@ -192,7 +199,7 @@ oo.i18n.dict = {
 		"list numbers sms failure":"Certains SMS n'ont pu être envoyés.",
 		"to change password": "Veuillez changer votre <br/> <b>mot de passe</b>",
 		"contact message sended":"Votre message est bien envoyé, nous allons traiter votre demande",
-		"sended message ":"message envoyé",
-		"email already added ":"Cet email est dejà inscrit",
+		"sended message":"message envoyé",
+		"email already added, please enter another one":"Cet email est dejà inscrit, veuillez en entrer un autre",
 	}
 };

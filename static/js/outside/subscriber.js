@@ -36,7 +36,7 @@ oo.api.subscriber.add = function( params ){
 					
 					oo.toast( 
 						oo.i18n.translate('contact message sended'), 
-						oo.i18n.translate('sended message'), 
+						oo.i18n.translate('error'), 
 						{
 							stayTime:3000, 
 							cleanup: true, 

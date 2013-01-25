@@ -1,9 +1,6 @@
 {% extends "hub/middle.html" %}
 {% load i18n %}
-{% block page_header %}
-{{ block.super}}
-<div id="schema"></div>
-{% endblock %}
+
 {% block sidebar %}
 	<ul class="nav">
 		{% for pin in pins %}

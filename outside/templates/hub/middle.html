@@ -182,7 +182,7 @@
 									</div>
 									<h2>{{ p.title|safe }}</h2>
 									<!-- div class="date">{{ p.date_last_modified|date:"d M. Y" }}</div -->
-									<div class="abstract">{% if p.abstract %}{{ p.abstract }}{% else %}an abstract ici{% endif %}{% for u in p.users.all %}{{ u.username }}{% endfor %}</div>
+									<div class="abstract">{% if p.abstract %}{{ p.abstract|safe }}{% else %}an abstract ici{% endif %}{% for u in p.users.all %}{{ u.username }}{% endfor %}</div>
 									</a>
 								</div>
 							{% endfor %}
