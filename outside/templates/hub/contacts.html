@@ -40,13 +40,20 @@
 			{{ subscriber_form.description }}
 
 			
+			<label for="recaptcha">{% trans "Recaptcha" %}
+				<div class="specification">{% trans "Recaptcha" %}</div>
+			</label>
+			{{ subscriber_form.captcha }}
+			
 
-			<label for="accepted_terms">{% trans "accepted terms" %}
+		
+		<label for="accepted_terms">{% trans "accepted terms" %}
 				<div class="specification">{% trans "accept terms" %}</div>
 			</label>
+			
 			{{ subscriber_form.accepted_terms }}
-			{{ subscriber_form.captcha }}
 			<input type="button" id="add-subscriber" value="{% trans "send" %}"/>
-		</div>
 	</div>
+	
+</div>
 {% endblock %}

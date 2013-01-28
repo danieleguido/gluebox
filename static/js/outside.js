@@ -49,13 +49,16 @@ oo.api.process = function( result, callback, namespace ){
 		} else return callback( result );
 	} else if( typeof result.error == "object" ){
 		oo.invalidate( result.error, namespace );
-		oo.toast(  oo.i18n.translate("invalid form") , oo.i18n.translate("error"), {stayTime:3000, cleanup: true});
+		oo.toast(oo.i18n.translate("Please fill all mandatory fields, enter the captcha and check the terms") , oo.i18n.translate("error"), {stayTime:5000, cleanup: true});
+		
+		
+		
 	} else {
 		oo.toast( result.error , oo.i18n.translate("error"), {stayTime:3000, cleanup: true});
 		
 		if(result.code == 'IntegrityError'){
 			if(result.error == 'column email is not unique'){
-				oo.toast( oo.i18n.translate("email already added") , oo.i18n.translate("error"), {stayTime:3000, cleanup: true});
+				oo.toast( oo.i18n.translate("email already added, please add another one") , oo.i18n.translate("error"), {stayTime:3000, cleanup: true});
 			}
 			
 		}
@@ -84,7 +87,7 @@ oo.modals.init = function(){
 /*
 
 
-    Tooltip
+    Tooltipemail already added, please add another one
     =======
 
 */
@@ -112,8 +115,17 @@ oo.toast = function( message, title, options ){
     =================
 
 */
-oo.invalidate = function( errors, namespace ){ if (!namespace){ namespace = "id";} oo.log("[oo.invalidate] namespace:",namespace, " errors:",errors );
+oo.invalidate = function( errors, namespace ){ 
+	if (!namespace){ 
+		namespace = "id";
+	}
+	
+	oo.log("[oo.invalidate] namespace:",namespace, " errors:",errors );
+	
 	for (var i in errors){
+		
+		oo.log(("#"+namespace+"_"+i))
+		
 		if( i.indexOf("_date") != -1  ){
 			$("#"+namespace+"_"+i+"_day").parent().addClass("invalid");	
 			continue;
@@ -123,7 +135,12 @@ oo.invalidate = function( errors, namespace ){ if (!namespace){ namespace = "id"
 		} else if( i.indexOf("_hours") != -1 || i.indexOf("_minutes") != -1  ) {
 			$("#"+namespace+"_"+i).parent().addClass("invalid");
 			continue;	
+		//Recaptcha error handling, the id is defined in outside/template/hub/contacts.html 
+		} else if(i.indexOf("captcha") != -1 ) {
+			$("#recaptcha_response_field").addClass("invalid");
+			continue;
 		}
+		
 		$("#"+namespace+"_"+i).addClass("invalid");
 	}
 }
@@ -178,7 +195,7 @@ oo.i18n.dict = {
 		"loading":"chargement en cours…",
 		"form errors":"Erreurs dans le formulaire",
 		"error":"Erreur",
-		"invalid form":"Veuillez remplir les champs obligatoires et cocher les termes.",//"Veuillez vérifier les champs en rouge.",
+		"Please fill all mandatory fields, enter the captcha and check the terms":"Veuillez remplir les champs obligatoires, bien saisir le captcha et cocher les termes.",//"Veuillez vérifier les champs en rouge.",
 		"empty dates":"Les dates de dé en rouge.",
 		"empty message field":"Le message est vide.",
 		"message sent":"Message envoyé",
@@ -200,6 +217,7 @@ oo.i18n.dict = {
 		"to change password": "Veuillez changer votre <br/> <b>mot de passe</b>",
 		"contact message sended":"Votre message est bien envoyé, nous allons traiter votre demande",
 		"sended message":"message envoyé",
-		"email already added, please enter another one":"Cet email est dejà inscrit, veuillez en entrer un autre",
+		"email already added, please add another one":"Cet email est dejà inscrit, veuillez en entrer un autre",
+		"success":"succès",
 	}
 };

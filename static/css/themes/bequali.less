@@ -1058,10 +1058,15 @@ input[type="text"], input[type="password"], input[type="number"], input[type="em
 	
 	
 	&.invalid{
-		background-color: fade( #cc1400, 20%);
+		background-color: fade( #cc1400, 50%);
 		border: 1px solid #cc1400;
 	}
 	
+}
+
+#recaptcha_response_field.invalid {
+    border: 1px solid #cc1400;
+  
 }
 
 textarea{
@@ -1783,4 +1788,8 @@ p.invalid{
 		border-left: 0px solid transparent;
 	}
 
+}
+
+.recaptchatable #recaptcha_image {
+	border:0px solid transparent;
 }

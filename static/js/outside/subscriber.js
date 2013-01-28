@@ -36,7 +36,7 @@ oo.api.subscriber.add = function( params ){
 					
 					oo.toast( 
 						oo.i18n.translate('contact message sended'), 
-						oo.i18n.translate('error'), 
+						oo.i18n.translate('success'), 
 						{
 							stayTime:3000, 
 							cleanup: true, 
@@ -63,7 +63,9 @@ oo.subscriber.init = function(){
 		description:$("#id_subscriber_description").val(),
 		accepted_terms:$("#id_subscriber_accepted_terms").prop("checked"),
 		status:$("#id_subscriber_status").val(),
-		email:$("#id_subscriber_email").val()  
+		email:$("#id_subscriber_email").val(),
+		recaptcha_challenge_field:$('input[name=recaptcha_challenge_field]').val(),
+		recaptcha_response_field:$('input[name=recaptcha_response_field]').val(),
 	})});
 	//$("").click()
 };
