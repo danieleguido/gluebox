@@ -50,6 +50,7 @@ oo.api.process = function( result, callback, namespace ){
 	} else if( typeof result.error == "object" ){
 		oo.invalidate( result.error, namespace );
 		oo.toast(oo.i18n.translate("Please fill all mandatory fields, enter the captcha and check the terms") , oo.i18n.translate("error"), {stayTime:5000, cleanup: true});
+		Recaptcha.reload();
 		
 		
 		
