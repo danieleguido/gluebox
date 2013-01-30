@@ -25,7 +25,7 @@ OUTSIDE_SITES_AVAILABLE = [
 	},
 	{
 		'name':'app',
-		'url':'/app/',
+		'url':'/reanalyse/index/',
 		'label':'enQ<span class="cyan">uêtes</span>',
 		'title':'l’instrument de DIME-SHS',
 		'content':'La banque d’enquêtes qualitatives',
