@@ -4,7 +4,7 @@ from django.template import RequestContext
 from django.conf import settings
 from glue.models import Pin
 from glue.misc import Epoxy, API_EXCEPTION_FORMERRORS, API_EXCEPTION_INTEGRITY
-from outside.models import Subscriber
+from outside.models import Subscriber, Message
 from outside.forms import SubscriberForm
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -33,6 +33,8 @@ def enquete_data( request, enquete_id ):
 	data = {}
 	return render_to_response('outside/enquete_data.json', RequestContext(request, data ) )
 
+
+
 def subscribers(request):
 	# logger.info("Welcome to GLUEBOX api")
 	response = Epoxy( request )
@@ -42,6 +44,9 @@ def subscribers(request):
 		
 		if not form.is_valid():
 			return response.throw_error( error=form.errors, code=API_EXCEPTION_FORMERRORS).json()
+		
+		
+			
 		try:
 			s = Subscriber(
 				first_name = form.cleaned_data['first_name'],
@@ -50,8 +55,19 @@ def subscribers(request):
 				affiliation = form.cleaned_data['affiliation'],
 				accepted_terms = form.cleaned_data['accepted_terms'],
 				description = form.cleaned_data['description']).save()
+
 		except IntegrityError, e:
-			return response.throw_error( error="%s" % e, code=API_EXCEPTION_INTEGRITY).json()
+			try:
+				s = Subscriber.objects.get( email=form.cleaned_data['email']  )
+
+			except Subscriber.DoesNotExist, e:
+				return response.throw_error( error="%s" % e, code=API_EXCEPTION_INTEGRITY).json()	
+			# return response.throw_error( error="%s" % e, code=API_EXCEPTION_INTEGRITY).json()
+		m = s.messages.create(
+			content=form.cleaned_data['description']
+		)
+
+		response.add("object", m, jsonify=True )
 
 	return response.queryset( Subscriber.objects.filter() ).json()
 	
