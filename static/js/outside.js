@@ -196,7 +196,7 @@ oo.i18n.dict = {
 		"loading":"chargement en cours…",
 		"form errors":"Erreurs dans le formulaire",
 		"error":"Erreur",
-		"Please fill all mandatory fields, enter the captcha and check the terms":"Veuillez remplir les champs obligatoires, bien saisir le captcha et cocher les termes.",//"Veuillez vérifier les champs en rouge.",
+		"Please fill all mandatory fields, enter the captcha and check the terms":"Veuillez remplir les champs obligatoires, bien saisir le captcha et cocher les mentions légales.",
 		"empty dates":"Les dates de dé en rouge.",
 		"empty message field":"Le message est vide.",
 		"message sent":"Message envoyé",

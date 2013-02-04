@@ -7,47 +7,47 @@
 
 {% block page_left %}
 	<div id="subscription">
-		<h2>{% trans "fill contact form" %}</h2>
+		<h2>{% trans "contact us"|capfirst %}</h2>
 
 		<div class="subscription-wrapper">
 		
-			<label for="id_subscriber_first_name">{% trans "first name" %}</label>
+			<label for="id_subscriber_first_name">{% trans "first name"|capfirst %}</label>
 			{{ subscriber_form.first_name }}
 
-			<label for="id_subscriber_last_name">{% trans "last name" %}</label>
+			<label for="id_subscriber_last_name">{% trans "last name"|capfirst %}</label>
 			{{ subscriber_form.last_name }}
 
-			<label for="id_subscriber_email">{% trans "email" %}</label>
+			<label for="id_subscriber_email">{% trans "email"|capfirst %}</label>
 			{{ subscriber_form.email }}
 
-			<label for="affiliation">{% trans "status" %}
+			<label for="affiliation">{% trans "status"|capfirst %}
 				
 			</label>
 			<p>{{ subscriber_form.status }}</p>
 
-			<label for="id_subscriber_affiliation">{% trans "affiliation" %}
-				<div class="specification">{% trans "university or institution" %}</div>
+			<label for="id_subscriber_affiliation">{% trans "affiliation"|capfirst %}
+				<div class="specification">{% trans "university or institution"|capfirst %}</div>
 			</label>
 			{{ subscriber_form.affiliation }}
 			
-			<label for="id_subscriber_description">{% trans "message" %}
+			<label for="id_subscriber_description">{% trans "message"|capfirst %}
 				<!--<div class="specification">{% trans "message" %}</div>-->
 			</label>
 			{{ subscriber_form.description }}
 
-			<label for="recaptcha_response_field">{% trans "recaptcha" %}
-				<div class="specification">{% trans "recaptcha description" %}</div>
+			<label for="recaptcha_response_field">{% trans "recaptcha"|capfirst %}
+				<div class="specification">{% trans "recaptcha description"|capfirst %}</div>
 			</label>
 			{{ subscriber_form.captcha }}
 			
 
 		
-			<label for="id_subscriber_accepted_terms">{% trans "legal notices" %}
+			<label for="id_subscriber_accepted_terms">{% trans "legal notices"|capfirst %}
 				<div class="specification">
-					<!--{% trans "legal notice description"  %}-->
+					{% trans "legal notice description"|capfirst  %}
 				</div>
 
-				<div class="specification"><b>{% trans "I have read and accepted the" %} {% trans "legal notices" %}</b> {{ subscriber_form.accepted_terms }}</div>
+				<div class="specification"><b>{% trans "I have read and accepted the" %} {% trans "legal notices" %} </b> {{ subscriber_form.accepted_terms }}</div>
 			</label>
 
 			

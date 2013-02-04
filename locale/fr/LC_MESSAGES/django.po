@@ -199,24 +199,24 @@ msgid "add news"
 msgstr ""
 
 #: hub/templates/hub/middle.html:192 outside/templates/hub/contacts.html:10
-msgid "fill contact form"
-msgstr "formulaire de contact"
+msgid "contact us"
+msgstr "nous contacter"
 
 #: hub/templates/hub/middle.html:200 outside/templates/hub/contacts.html:18
 msgid "first name"
-msgstr ""
+msgstr "prénom"
 
 #: hub/templates/hub/middle.html:203 outside/templates/hub/contacts.html:21
 msgid "last name"
-msgstr ""
+msgstr "nom"
 
 #: hub/templates/hub/middle.html:206 outside/templates/hub/contacts.html:24
 msgid "email"
-msgstr ""
+msgstr "email"
 
 #: hub/templates/hub/middle.html:209 outside/templates/hub/contacts.html:32
 msgid "affiliation"
-msgstr ""
+msgstr "affiliation"
 
 #: hub/templates/hub/middle.html:210 outside/templates/hub/contacts.html:33
 msgid "university or institution"
@@ -226,7 +226,7 @@ msgstr "université ou institution"
 #: outside/templates/hub/contacts.html:37
 #: outside/templates/hub/contacts.html:38
 msgid "message"
-msgstr ""
+msgstr "message"
 
 #: hub/templates/hub/middle.html:219
 msgid "accepted terms"
@@ -329,13 +329,12 @@ msgid "legal notices"
 msgstr "mentions légales"
 
 #: outside/templates/hub/contacts.html:51
-#, fuzzy
 msgid "legal notice description"
-msgstr ""
+msgstr "Les informations recueillies font l'objet d'un traitement informatique destiné à la gestion du portail BeQuali. Conformément à la loi 'Informatique et Libertés' du 6 janvier 1978 modifiée en 2004, vous bénéficiez d'un droit d'accès et de rectification aux informations qui vous concernent."
 
 #: outside/templates/hub/contacts.html:54
 msgid "I have read and accepted the"
-msgstr "J'ai lu et accepté les"
+msgstr "J'ai lu et j'accepte les"
 
 #: outside/templates/hub/middle.html:119
 msgid "actualités"
