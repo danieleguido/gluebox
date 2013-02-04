@@ -6,7 +6,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 
-urlpatterns = i18n_patterns('',
+urlpatterns = patterns('',
 	url(r'^$', 'outside.views.index', name='outside_index'),
 	url(r'^glue/', include('glue.urls')),
     # Uncomment the admin/doc line below to enable admin documentation:
