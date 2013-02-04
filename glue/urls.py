@@ -2,6 +2,7 @@ from django.conf.urls.defaults import patterns, include, url
 
 
 urlpatterns = patterns('',
+
 	url(r'^$', 'glue.api.index', name='glue_api_index'),
 
 	url(r'^api/manage/(?P<model_name>[a-zA-Z_]+)/$', 'glue.api.manage_objects', name='glue_api_manage_objects'),

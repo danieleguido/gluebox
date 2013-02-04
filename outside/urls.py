@@ -2,6 +2,7 @@ from django.conf.urls.defaults import patterns, include, url
 from django.conf import settings
 
 urlpatterns = patterns('',
+	# url(r'^(?P<language>[a-z]{2})$','outside.views.index', name='outside_index'),
 	url(r'^$','outside.views.index', name='outside_index'),
 	url(r'^login/$','outside.views.login_view', name='outside_login'),
 	url(r'^logout/$','outside.views.logout_view', name='outside_logout'),
@@ -9,8 +10,12 @@ urlpatterns = patterns('',
 
 	# special pages before auto /page
 	url(r'^news/$','outside.views.news', name='outside_news'),
+
 	url(r'^contacts/$','outside.views.contacts', name='outside_contacts'),
+
 	url(r'^index/$','outside.views.index', name='outside_index'),
+	# url(r'^(?P<language>[a-z]{2})/index/$','outside.views.index', name='outside_index'),
+
 	url(r'^legal-notice/$','outside.views.legal', name='outside_legal'),
 	
 	# api outside specific: subscribers etc...
