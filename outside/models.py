@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.translation import ugettext as _
 
 
 class Message( models.Model ):
@@ -31,15 +32,16 @@ class Subscriber( models.Model ):
 	OTHER = 'OTH'
 
 	STATUS_CHOICES = (
-		(RESEARCHER, 'Chercheur Statutaire'),
-		(PHD_STUDENT, 'Doctorant'),
-		(MS_STUDENT, 'Étudiant - Master'),
-		(PROFESSOR, 'Enseignant-Chercheur'),
+		(RESEARCHER, _('Statutory researcher')),
+		(PHD_STUDENT, _('PhD')),
+		(MS_STUDENT, _('Student - Master')),
+		(PROFESSOR, _('Teacher-Researcher')),
 
-		(ENGINEEER, 'Ingénieur'),
-		(POST_DOC, 'Post Doc'),
-		(OTHER, 'Autre'),
+		(ENGINEEER, _('Engineer')),
+		(POST_DOC, _('Post Doc')),
+		(OTHER, _('Other')),
 	)
+
 
 
 
