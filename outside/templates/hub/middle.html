@@ -29,9 +29,11 @@
 						<li style="float:right;">
 							<a href="#login" data-toggle="modal" data-target="#login-modal">{% trans "login" %}</a>
 						</li>
+						{% comment %}
 						<li style="float:right;">
 							<a href="cont">{% trans "sign up" %}</a>
 						</li>
+						{% endcomment %}
 						{% endif %}
 
 						{% comment %}
@@ -210,32 +212,55 @@
 			<div class="push"></div>
 		</div>
 	</div>
+	
 	<!-- the footer -->
 	<footer>
 		{% block footer %}
 		<div class="container_12">
 			<div id="footer-inner">
-				
+				<a href="http://sciences-po.fr" class="footer-link"><img src="{{ STATIC_URL }}img/scpo-blanc.png"/></a>
+
+				<a href="{% url outside_legal %}" class="footer-link">mentions légales</a>
+
+				<a href="{% url outside_contacts %}" class="footer-link">nous contacter</a>
+
+				{% comment %}
 				<ul>
-					{% comment %}<li style="float:right" {% ifequal language "EN" %} class="selected"{% endifequal %}>
+
+					<li style="float:right" {% ifequal language "EN" %} class="selected"{% endifequal %}>
 						<a href="{{  request.path }}?lang=en">{% trans "english" %}</a>
 					</li>
 					<li style="float:right" {% ifequal language "FR" %} class="selected"{% endifequal %}>
 						<a href="{{  request.path }}?lang=fr">{% trans "french" %}</a>
 					</li>
-					{% endcomment %}
+					
 
-					<li><a href="{% url outside_legal %}">mentions légales</a></li>
+					<li></li>
 		
 				</ul>
+				{% endcomment %}
 			</div>
 			<div class="clear"></div>
 		</div>
+		
 		
 
 		{% endblock %}	
 		
 	</footer>
+
+	<!-- Piwik --> 
+	<script type="text/javascript">
+	var pkBaseURL = (("https:" == document.location.protocol) ? "https://musselwhite.dime-shs.sciences-po.fr/" : "http://musselwhite.dime-shs.sciences-po.fr/");
+	document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+	</script><script type="text/javascript">
+	try {
+	var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
+	piwikTracker.trackPageView();
+	piwikTracker.enableLinkTracking();
+	} catch( err ) {}
+	</script><noscript><p><img src="http://musselwhite.dime-shs.sciences-po.fr/piwik.php?idsite=1" style="border:0" alt="" /></p></noscript>
+	<!-- End Piwik Tracking Code -->
 
 	<!-- the login modal -->
 

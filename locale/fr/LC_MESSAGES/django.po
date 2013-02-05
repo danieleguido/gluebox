@@ -238,7 +238,7 @@ msgstr ""
 
 #: hub/templates/hub/middle.html:224 outside/templates/hub/contacts.html:59
 msgid "send"
-msgstr ""
+msgstr "envoyer"
 
 #: hub/templates/hub/middle.html:272 outside/templates/hub/middle.html:283
 #: outside/templates/outside/middle.html:226
