@@ -1,4 +1,4 @@
-{% extends "hub/boilerplate.html" %}
+	{% extends "hub/boilerplate.html" %}
 {% load i18n %}
 
 
@@ -217,13 +217,108 @@
 	<footer>
 		{% block footer %}
 		<div class="container_12">
+			
+			<style>
+				#footer-inner img{
+					height: 53px;
+				}
+			</style>
+			
 			<div id="footer-inner">
-				<a href="http://sciences-po.fr" class="footer-link"><img src="{{ STATIC_URL }}img/scpo-blanc.png"/></a>
-
+				
+				
+				{% if site == 'bequali' %}
+				
+				
 				<a href="{% url outside_legal %}" class="footer-link">mentions légales</a>
-
 				<a href="{% url outside_contacts %}" class="footer-link">nous contacter</a>
+				
+				<a href="http://sciences-po.fr" class="footer-link"><img src="{{ STATIC_URL }}img/scpo-blanc.png"/></a>
+				<a href="http://sciences-po.fr" class="footer-link"><img src="{{ STATIC_URL }}img/logoCNRS.gif"/></a>
 
+				
+				{% elif site == 'archipolis' %}
+				 <!--   
+				 CDSP | ISP | CEE | CERAPS | PACTE
+				 
+				 TRIANGLE | CENTRE EMILE DURKHEIM
+				 -->
+				 
+				 <a href="" class="footer-link"><img src="{{ STATIC_URL }}img/cdsp.png" title="CDSP"/></a>
+				 <a href="" class="footer-link"><img src="{{ STATIC_URL }}img/isp.png" title="ISP"/></a>
+				 <a href="" class="footer-link"><img src="{{ STATIC_URL }}img/cee.png" title="CEE"/></a>
+				 <a href="http://sciences-po.fr" class="footer-link"><img src="{{ STATIC_URL }}img/ca70138734.gif" title="cerap"/></a>
+				 <a href="" class="footer-link"><img src="{{ STATIC_URL }}img/logo-pacte.png"/></a>
+				 
+				 
+				 <a href="http://sciences-po.fr" class="footer-link"><img src="{{ STATIC_URL }}img/triangle.gif"/></a>
+				 <a href="http://sciences-po.fr" class="footer-link"><img src="{{ STATIC_URL }}img/ced.jpg"/></a>
+				 
+				 <a href="{% url outside_legal %}" class="footer-link">mentions légales</a>
+				 <a href="{% url outside_contacts %}" class="footer-link">nous contacter</a>
+
+				
+				
+				{% elif site == 'enquetes'}
+				
+				<!--	
+				SCIENCES PO | CNRS
+				
+				DIME-SHS
+				Investissement d'avenir
+				-->
+				
+				<a href="http://sciences-po.fr" class="footer-link"><img src="{{ STATIC_URL }}img/scpo-blanc.png"/></a>
+				<a href="http://sciences-po.fr" class="footer-link"><img src="{{ STATIC_URL }}img/logoCNRS.gif"/></a>
+				
+				<a href="{% url outside_legal %}" class="footer-link">mentions légales</a>
+				<a href="{% url outside_contacts %}" class="footer-link">nous contacter</a>
+				
+				<div style="align:right">
+					<ul>
+						<li><a href="">DIME-SHS</a></li>
+						<li><a href="">Investissement d'avenir</a></li>
+						<li><a href="">Pres</a></li>
+					</ul>
+				</div>
+				{% elif site == 'quali2' %}
+					
+				
+				
+				
+				
+				{% elif site == 'reanalyse' %}
+				
+				<a href="" class="footer-link"><img src="{{ STATIC_URL }}img/cdsp.png" title="CDSP"/></a>
+				<a href="" class="footer-link"><img src="{{ STATIC_URL }}img/isp.png" title="ISP"/></a>
+				
+				<a href="http://sciences-po.fr" class="footer-link"><img src="{{ STATIC_URL }}img/triangle.gif"/></a>
+				<a href="" class="footer-link"><img src="{{ STATIC_URL }}img/logo-pacte.png"/></a>
+				
+				<a href="" class="footer-link"><img src="{{ STATIC_URL }}img/ispole.png" title="ispole"/></a>
+				<a href="" class="footer-link"><img src="{{ STATIC_URL }}img/t1_logo_edf.png"/></a>
+				
+				<a href="" class="footer-link"><img src="{{ STATIC_URL }}img/media-lab.png" title="media-lab"/></a>
+								
+				{% else %}
+				   
+				   
+				
+				{% endif %}
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+
+				
 				{% comment %}
 				<ul>
 
