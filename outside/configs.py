@@ -54,6 +54,4 @@ OUTSIDE_SITES_AVAILABLE = [
 	},
 	
 	
-	
-	
 ]

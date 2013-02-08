@@ -229,11 +229,14 @@
 				
 				{% if site == 'bequali' %}
 				
-				
-				<a href="{% url outside_legal %}" class="footer-link">mentions légales</a>
-				<a href="{% url outside_contacts %}" class="footer-link">nous contacter</a>
-				
 				<a href="http://sciences-po.fr" class="footer-link"><img src="{{ STATIC_URL }}img/scpo-blanc.png"/></a>
+				
+				
+				<p style="float:right">
+					<a href="{% url outside_legal %}" class="footer-link">mentions légales</a>
+					<a href="{% url outside_contacts %}" class="footer-link">nous contacter</a>
+				</p>
+				
 				<a href="http://sciences-po.fr" class="footer-link"><img src="{{ STATIC_URL }}img/logoCNRS.gif"/></a>
 
 				
@@ -254,8 +257,10 @@
 				 <a href="http://triangle.ens-lyon.fr/" class="footer-link"><img src="{{ STATIC_URL }}img/triangle.gif"/></a>
 				 <a href="http://www.durkheim.sciencespobordeaux.fr/" class="footer-link"><img src="{{ STATIC_URL }}img/ced.jpg"/></a>
 				 
-				 <a href="{% url outside_legal %}" class="footer-link">mentions légales</a>
-				 <a href="{% url outside_contacts %}" class="footer-link">nous contacter</a>
+				 <p style="float:right">
+					<a href="{% url outside_legal %}" class="footer-link">mentions légales</a>
+					<a href="{% url outside_contacts %}" class="footer-link">nous contacter</a>
+				 </p>
 
 				
 				
@@ -299,6 +304,11 @@
 				<a href="http://france.edf.com/france-45634.html" class="footer-link"><img src="{{ STATIC_URL }}img/t1_logo_edf.png"/></a>
 				
 				<a href="http://www.medialab.sciences-po.fr/" class="footer-link"><img src="{{ STATIC_URL }}img/media-lab.png" title="media-lab"/></a>
+				
+				<p style="float:right">
+					<a href="{% url outside_legal %}" class="footer-link">mentions légales</a>
+					<a href="{% url outside_contacts %}" class="footer-link">nous contacter</a>
+				</p>
 								
 				{% else %}
 				   
