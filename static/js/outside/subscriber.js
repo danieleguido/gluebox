@@ -12,6 +12,8 @@ oo.magic.subscriber = {};
 oo.magic.subscriber.add = function(){
 	oo.log("[oo.magic.subscriber.add]");
 	$("#subscription").hide();
+	$("#subscription-accepted").show();
+	$("#right-sidebar").height($(".page").height());
 };
 
 /*
@@ -26,29 +28,16 @@ oo.magic.subscriber.add = function(){
 
 oo.api.subscriber = {};
 oo.api.subscriber.add = function( params ){
+	if( params.accepted_terms == false){
+		oo.toast( oo.i18n.translate("please check accepted terms"), oo.i18n.translate("form errors"));
+		return;
+	}
 	$.ajax( $.extend( oo.api.settings.post,{
 		url: oo.urls.add_subscriber,
 		data: params, 
 		success:function(result){
 			oo.log( "[oo.api.subscriber.add] result:", result );
 			oo.api.process( result, oo.magic.subscriber.add, "id_subscriber" );
-			if(result.status == 'ok'){
-					
-					oo.toast( 
-						oo.i18n.translate('contact message sended'), 
-						oo.i18n.translate('success'), 
-						{
-							stayTime:3000, 
-							cleanup: true, 
-							close:function(){
-								window.location = oo.urls.outside_index
-								
-						
-							}
-						}
-					);
-				
-			}
 		}
 	}));
 };

@@ -8,7 +8,9 @@
 {% block page_left %}
 	<div id="subscription">
 		<h2>{% trans "contact us"|capfirst %}</h2>
-
+		<noscript>
+			
+		</noscript>
 		<div class="subscription-wrapper">
 		
 			<label for="id_subscriber_first_name">{% trans "first name"|capfirst %}</label>
@@ -53,7 +55,16 @@
 			
 		
 			<input type="button" id="add-subscriber" value="{% trans "send" %}"/>
-	</div>
+		</div>
 	
-</div>
+	</div>
+	<div id="subscription-accepted" style="display:none">
+		<h2>{% trans "Merci !"%}</h2>
+
+		{% trans "message sent" %}
+
+		<p>
+			<a href="{% url outside_index %}">{% trans "back to home page"%}</a>
+		</p>
+	</div>
 {% endblock %}

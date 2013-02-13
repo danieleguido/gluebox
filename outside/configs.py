@@ -9,7 +9,7 @@ OUTSIDE_SITES_AVAILABLE = [
 		'name':'bequali',
 		'url':'/',
 		'label':'<span class="cyan">beQ</span>uali',
-		'title':'Le Portail',
+		'title':'le Portail',
 		'content':'Équipe de recherche méthodologique qualitative du CDSP',
 		'template':'hub',
 		'long_content':'beQuali est l\'équipe de recherche méthodologique qualitative du CDSP'
@@ -47,7 +47,7 @@ OUTSIDE_SITES_AVAILABLE = [
 		'url':'/quali2',
 		'label':'quali<span class="cyan">2</span>',
 		'title':'le site ressource',
-		'content':'documents et débats sur les méthodes qualitatives',
+		'content':'Documents et débats sur les méthodes qualitatives',
 		'template':'hub',
 		'long_content': 'Quali²propose un espace de ressources et de débats sur les méthodes qualitatives. N’hésitez pas à le visiter et à proposer des contributions. <a href="http://quali.dime-shs.sciences-po.fr/quali2/">Cliquez ici</a> !'
 	

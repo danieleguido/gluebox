@@ -220,5 +220,7 @@ oo.i18n.dict = {
 		"sended message":"message envoyé",
 		"email already added, please add another one":"Cet email est dejà inscrit, veuillez en entrer un autre",
 		"success":"succès",
+		"please check accepted terms": "Veuillez accepter les conditions d'utilisation",
+
 	}
 };

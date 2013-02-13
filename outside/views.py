@@ -90,6 +90,15 @@ def page( request, page_slug ):
 
 	return render_to_response("%s/page.html" % data['template'], RequestContext(request, data ) )
 
+
+
+def notfound( request ):
+	data = shared_context( request, tags=[ "notfound" ] )
+	# load all pins without page
+	data['pins'] = Pin.objects.filter(language=data['language'], page__isnull=True ).order_by("-id")
+	return render_to_response("%s/404.html" % data['template'], RequestContext(request, data ) )
+
+
 def download_view( request, pin_slug ):
 	data = shared_context( request )
 	pin = get_object_or_404(Pin, slug=pin_slug, language=data['language'] )
@@ -247,3 +256,5 @@ def load_language( request, d ):
 	d['language'] = language.upper()
 
 	return language
+
+

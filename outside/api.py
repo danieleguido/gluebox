@@ -63,7 +63,8 @@ def subscribers(request):
 				email = form.cleaned_data['email'],
 				affiliation = form.cleaned_data['affiliation'],
 				accepted_terms = form.cleaned_data['accepted_terms'],
-				description = form.cleaned_data['description']).save()
+				description = form.cleaned_data['description'])
+			s.save()
 
 		except IntegrityError, e:
 			try:
@@ -80,7 +81,7 @@ def subscribers(request):
 		
 		
 		#Notification mail to the client
-		subject, from_email, to = _('Bequali : Message sent'),'admin@bequali.fr', form.cleaned_data['email']
+		subject, from_email, to = _('Bequali : Message sent'),"L'équipe Bequali <admin@bequali.fr>", form.cleaned_data['email']
 		text_content = '%s<br/><br/>%s</br>%s<br/><br/>%s<br/><br/>%s' % (_('Hello, your message has been sent, we will respond as soon as possible.'),
 												_('Message content :'),
 												form.cleaned_data['description'],

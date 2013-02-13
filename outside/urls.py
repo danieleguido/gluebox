@@ -6,7 +6,11 @@ urlpatterns = patterns('',
 	url(r'^$','outside.views.index', name='outside_index'),
 	url(r'^login/$','outside.views.login_view', name='outside_login'),
 	url(r'^logout/$','outside.views.logout_view', name='outside_logout'),
+	url(r'^404/$','outside.views.notfound', name='outside_notfound'),
 	url(r'^download/(?P<pin_slug>[a-z0-9-_]+)/$','outside.views.download_view', name='outside_download'),
+	
+	
+	
 
 	# special pages before auto /page
 	url(r'^news/$','outside.views.news', name='outside_news'),
