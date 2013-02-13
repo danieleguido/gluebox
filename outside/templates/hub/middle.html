@@ -287,21 +287,24 @@
 				
 				{% elif site == 'reanalyse' %}
 				
-				 <a href="http://cdsp.sciences-po.fr/" class="footer-link"><img src="{{ STATIC_URL }}img/cdsp.png" title="CDSP"/></a>
-				 <a href="http://www.isp.cnrs.fr/" class="footer-link"><img src="{{ STATIC_URL }}img/isp.png" title="ISP"/></a>
+				<a href="http://sciences-po.fr" class="footer-link"><img src="{{ STATIC_URL }}img/scpo-blanc.png"/></a>
+				<a href="http://www.cnrs.fr/" class="footer-link"><img src="{{ STATIC_URL }}img/cnrs.png"/></a>
 				
-				<a href="http://triangle.ens-lyon.fr/" class="footer-link"><img src="{{ STATIC_URL }}img/triangle.gif"/></a>
-				<a href="http://www.pacte-grenoble.fr/" class="footer-link"><img src="{{ STATIC_URL }}img/logo-pacte.png"/></a>
+
+				 <a href="http://cdsp.sciences-po.fr/" class="footer-link">CDSP</a>
+				 <a href="http://www.isp.cnrs.fr/" class="footer-link">CNRS isp</a>
 				
-				<a href="" class="footer-link"><img src="{{ STATIC_URL }}img/ispole.png" title="ispole"/></a>
-				<a href="http://france.edf.com/france-45634.html" class="footer-link"><img src="{{ STATIC_URL }}img/t1_logo_edf.png"/></a>
+				<a href="http://triangle.ens-lyon.fr/" class="footer-link">Triangle</a>
+				<a href="http://www.pacte-grenoble.fr/" class="footer-link">Pacte-Grenoble</a>
 				
-				<a href="http://www.medialab.sciences-po.fr/" class="footer-link"><img src="{{ STATIC_URL }}img/media-lab.png" title="media-lab"/></a>
+				<a href="" class="footer-link">ispole</a>
+				<a href="http://france.edf.com/france-45634.html" class="footer-link">EDF</a>
 				
-				<p style="float:right">
-					<a href="{% url outside_legal %}" class="footer-link">mentions légales</a>
-					<a href="{% url outside_contacts %}" class="footer-link">nous contacter</a>
-				</p>
+				
+				
+				<a href="{% url outside_contacts %}" class="footer-link right" style="margin-right:18px">nous contacter</a>
+							
+				<a href="{% url outside_legal %}" class="footer-link right">mentions légales</a>
 								
 				{% else %}
 				   
