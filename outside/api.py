@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+
+
+
 from django.db import IntegrityError 
 from django.shortcuts import render_to_response, redirect, get_object_or_404
 from django.template import RequestContext
@@ -11,6 +15,13 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth import login, logout, authenticate
 from outside.forms import LoginForm
 from django.contrib.auth import login, logout, authenticate
+
+from django.core.mail import send_mail
+from django.core.mail import EmailMultiAlternatives
+from django.contrib.sites.models import get_current_site
+from django.utils.translation import ugettext as _
+
+
 
 #
 #    API CUSTOM DECORATORS
@@ -45,8 +56,6 @@ def subscribers(request):
 		if not form.is_valid():
 			return response.throw_error( error=form.errors, code=API_EXCEPTION_FORMERRORS).json()
 		
-		
-			
 		try:
 			s = Subscriber(
 				first_name = form.cleaned_data['first_name'],
@@ -66,7 +75,54 @@ def subscribers(request):
 		m = s.messages.create(
 			content=form.cleaned_data['description']
 		)
+			
+		
+		
+		
+		#Notification mail to the client
+		subject, from_email, to = _('Bequali : Message sent'),'admin@bequali.fr', form.cleaned_data['email']
+		text_content = '%s<br/><br/>%s</br>%s<br/><br/>%s<br/><br/>%s' % (_('Hello, your message has been sent, we will respond as soon as possible.'),
+												_('Message content :'),
+												form.cleaned_data['description'],
+												_('Goodbye'),
+												'<img src="http://quali.dime-shs.sciences-po.fr/bequali/static/img/bequali-logo.png"/>'
+												)
+				
+		html_content = text_content.replace('\n', '<br/>')
+		
 
+		msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+		msg.attach_alternative(html_content, "text/html")
+		msg.content_subtype = 'html'
+		msg.send()
+		
+		
+		
+		form_datas2 = {'1. Prenom' : form.cleaned_data['first_name'],
+				'2. nom' : form.cleaned_data['last_name'],
+				'3. email' : form.cleaned_data['email'],
+				'4. affiliation' : form.cleaned_data['affiliation'],
+				'5. message' : form.cleaned_data['description']}	
+		
+		#Send mail to bequali admin : sarah.cadorel@sciences-po.fr, guillaume.garcia, anne.both
+		subject, from_email, to = _('bequali contact request'),'admin@bequali.fr', settings.EMAIL_ADMINS
+		html_content = '%s<br/><br/>%s<br/><br/>%s<br/><br/>%s</br/><br/>%s' % (
+												_('Hello, you have a new contact request.'),
+												_('Contact information :'), 
+												''.join(['%s : %s<br/>' % (k, v) for k, v in sorted(form_datas2.items())]),
+												_('Goodbye'),
+												'<img src="http://quali.dime-shs.sciences-po.fr/bequali/static/img/bequali-logo.png"/>'
+												)
+		
+		text_content = html_content.replace('<br/>', '\n')
+
+											 
+		msg2 = EmailMultiAlternatives(subject, text_content, from_email, to)
+		msg2.attach_alternative(html_content, 'text/html')
+		msg2.content_subtype = 'html'
+		msg2.send()
+		
+		
 		response.add("object", m, jsonify=True )
 
 	return response.queryset( Subscriber.objects.filter() ).json()
