@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-13 10:53+0100\n"
+"POT-Creation-Date: 2013-02-15 14:16+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: DANIELE GUIDO <daniele.guido@sciences-po.fr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,8 +29,8 @@ msgstr "fdfd"
 #: glue/forms.py:6 hub/templates/hub/login.html:30
 #: hub/templates/hub/middle.html:29 hub/templates/hub/middle.html.py:264
 #: hub/templates/hub/middle.html:273 outside/templates/hub/login.html:30
-#: outside/templates/hub/middle.html:30 outside/templates/hub/middle.html:366
-#: outside/templates/hub/middle.html:375
+#: outside/templates/hub/middle.html:30 outside/templates/hub/middle.html:364
+#: outside/templates/hub/middle.html:373
 #: outside/templates/outside/login.html:30
 #: outside/templates/outside/middle.html:178
 #: outside/templates/outside/middle.html:218
@@ -141,7 +141,7 @@ msgstr ""
 
 #: hub/templates/hub/middle.html:62 hub/templates/hub/middle.html.py:287
 #: hub/templates/hub/middle.html:297 outside/templates/hub/middle.html:70
-#: outside/templates/hub/middle.html:389 outside/templates/hub/middle.html:399
+#: outside/templates/hub/middle.html:387 outside/templates/hub/middle.html:397
 #: outside/templates/outside/middle.html:49
 #: outside/templates/outside/middle.html:241
 #: outside/templates/outside/middle.html:251
@@ -167,7 +167,7 @@ msgstr ""
 #: hub/templates/hub/middle.html:306 hub/templates/hub/middle.html.py:315
 #: hub/templates/hub/page.html:26 outside/templates/hub/blog.html:21
 #: outside/templates/hub/middle.html:151 outside/templates/hub/middle.html:169
-#: outside/templates/hub/middle.html:408 outside/templates/hub/middle.html:417
+#: outside/templates/hub/middle.html:406 outside/templates/hub/middle.html:415
 #: outside/templates/outside/middle.html:102
 #: outside/templates/outside/middle.html:120
 #: outside/templates/outside/middle.html:260
@@ -202,29 +202,29 @@ msgstr ""
 msgid "fill contact form"
 msgstr ""
 
-#: hub/templates/hub/middle.html:200 outside/templates/hub/contacts.html:14
+#: hub/templates/hub/middle.html:200 outside/templates/hub/contacts.html:16
 msgid "first name"
 msgstr "prénom"
 
-#: hub/templates/hub/middle.html:203 outside/templates/hub/contacts.html:17
+#: hub/templates/hub/middle.html:203 outside/templates/hub/contacts.html:19
 msgid "last name"
 msgstr "nom"
 
-#: hub/templates/hub/middle.html:206 outside/templates/hub/contacts.html:20
+#: hub/templates/hub/middle.html:206 outside/templates/hub/contacts.html:22
 msgid "email"
 msgstr "email"
 
-#: hub/templates/hub/middle.html:209 outside/templates/hub/contacts.html:28
+#: hub/templates/hub/middle.html:209 outside/templates/hub/contacts.html:30
 msgid "affiliation"
 msgstr "affiliation"
 
-#: hub/templates/hub/middle.html:210 outside/templates/hub/contacts.html:29
+#: hub/templates/hub/middle.html:210 outside/templates/hub/contacts.html:31
 msgid "university or institution"
 msgstr "université ou institution"
 
 #: hub/templates/hub/middle.html:214 hub/templates/hub/middle.html.py:215
-#: outside/templates/hub/contacts.html:33
-#: outside/templates/hub/contacts.html:34
+#: outside/templates/hub/contacts.html:35
+#: outside/templates/hub/contacts.html:36
 msgid "message"
 msgstr "message"
 
@@ -236,67 +236,67 @@ msgstr ""
 msgid "J'accepte et je comprend"
 msgstr ""
 
-#: hub/templates/hub/middle.html:224 outside/templates/hub/contacts.html:55
+#: hub/templates/hub/middle.html:224 outside/templates/hub/contacts.html:57
 msgid "send"
 msgstr "envoyer"
 
-#: hub/templates/hub/middle.html:272 outside/templates/hub/middle.html:374
+#: hub/templates/hub/middle.html:272 outside/templates/hub/middle.html:372
 #: outside/templates/outside/middle.html:226
 msgid "discard"
 msgstr ""
 
 #: hub/templates/hub/middle.html:296 hub/templates/hub/middle.html.py:314
-#: hub/templates/hub/middle.html:359 outside/templates/hub/middle.html:398
-#: outside/templates/hub/middle.html:416 outside/templates/hub/middle.html:461
+#: hub/templates/hub/middle.html:359 outside/templates/hub/middle.html:396
+#: outside/templates/hub/middle.html:414 outside/templates/hub/middle.html:459
 #: outside/templates/outside/middle.html:250
 #: outside/templates/outside/middle.html:268
 #: outside/templates/outside/middle.html:313
 msgid "cancel"
 msgstr ""
 
-#: hub/templates/hub/middle.html:306 outside/templates/hub/middle.html:408
+#: hub/templates/hub/middle.html:306 outside/templates/hub/middle.html:406
 #: outside/templates/outside/middle.html:260
 msgid "add section into"
 msgstr ""
 
-#: hub/templates/hub/middle.html:309 outside/templates/hub/middle.html:411
+#: hub/templates/hub/middle.html:309 outside/templates/hub/middle.html:409
 #: outside/templates/outside/middle.html:263
 msgid "add section rules"
 msgstr ""
 
 #: hub/templates/hub/middle.html:326 hub/templates/hub/middle.html.py:360
-#: outside/templates/hub/middle.html:428 outside/templates/hub/middle.html:462
+#: outside/templates/hub/middle.html:426 outside/templates/hub/middle.html:460
 #: outside/templates/outside/middle.html:280
 #: outside/templates/outside/middle.html:314
 msgid "edit section"
 msgstr ""
 
-#: outside/api.py:85
+#: outside/api.py:84
 msgid "Bequali : Message sent"
 msgstr "Bequali : message envoyé"
 
-#: outside/api.py:86 outside/api.py:92
+#: outside/api.py:85
 msgid "Hello, your message has been sent, we will respond as soon as possible."
 msgstr ""
 "Bonjour, votre message a été envoyé, nous vous répondrons dès que possible."
 
-#: outside/api.py:87 outside/api.py:93
+#: outside/api.py:86
 msgid "Message content :"
 msgstr "Contenu du message : "
 
-#: outside/api.py:89 outside/api.py:95 outside/api.py:117 outside/api.py:124
+#: outside/api.py:88 outside/api.py:114
 msgid "Goodbye"
 msgstr "Au revoir"
 
-#: outside/api.py:112
+#: outside/api.py:109
 msgid "bequali contact request"
 msgstr "Demande de contact site bequali"
 
-#: outside/api.py:114 outside/api.py:121
+#: outside/api.py:111
 msgid "Hello, you have a new contact request."
 msgstr "Bonjour, vous avez une demande de contact site bequali"
 
-#: outside/api.py:115 outside/api.py:122
+#: outside/api.py:112
 msgid "Contact information :"
 msgstr "Informations du contact :"
 
@@ -328,44 +328,47 @@ msgstr ""
 msgid "Other"
 msgstr "Autre"
 
-#: outside/views.py:145
+#: outside/views.py:154
 msgid "user has been disabled"
 msgstr ""
 
-#: outside/views.py:147 outside/views.py:150
+#: outside/views.py:156 outside/views.py:159
 msgid "invalid credentials"
 msgstr ""
 
-#: outside/views.py:243
+#: outside/views.py:252
 msgid "language not found"
 msgstr ""
 
 #: outside/templates/hub/404.html:9
-msgid "page not found"
+msgid "Page not found !"
 msgstr ""
+
+#: outside/templates/hub/404.html:13 outside/templates/hub/contacts.html:67
+msgid "back to home page"
+msgstr "Retour à l'accueil"
 
 #: outside/templates/hub/contacts.html:10
 msgid "contact us"
 msgstr "nous contacter"
 
-#: outside/templates/hub/contacts.html:23
+#: outside/templates/hub/contacts.html:25
 msgid "status"
 msgstr "statut"
 
-#: outside/templates/hub/contacts.html:38
+#: outside/templates/hub/contacts.html:40
 msgid "recaptcha"
 msgstr "Captcha"
 
-#: outside/templates/hub/contacts.html:39
+#: outside/templates/hub/contacts.html:41
 msgid "recaptcha description"
 msgstr "Veuillez recopier le texte de l'image ci-dessous"
 
-#: outside/templates/hub/contacts.html:45
-#: outside/templates/hub/contacts.html:50
+#: outside/templates/hub/contacts.html:47
 msgid "legal notices"
 msgstr "mentions légales"
 
-#: outside/templates/hub/contacts.html:47
+#: outside/templates/hub/contacts.html:49
 msgid "legal notice description"
 msgstr ""
 "Les informations recueillies font l'objet d'un traitement informatique "
@@ -373,9 +376,17 @@ msgstr ""
 "et Libertés' du 6 janvier 1978 modifiée en 2004, vous bénéficiez d'un droit "
 "d'accès et de rectification aux informations qui vous concernent."
 
-#: outside/templates/hub/contacts.html:50
+#: outside/templates/hub/contacts.html:52
 msgid "I have read and accepted"
 msgstr "J'ai lu et j'accepte"
+
+#: outside/templates/hub/contacts.html:62
+msgid "Merci !"
+msgstr ""
+
+#: outside/templates/hub/contacts.html:64
+msgid "message sent"
+msgstr "message"
 
 #: outside/templates/hub/middle.html:119
 msgid "actualités"
